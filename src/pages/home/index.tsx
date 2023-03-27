@@ -1,4 +1,4 @@
-import './styleBody.css'
+import './style.css'
 import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
