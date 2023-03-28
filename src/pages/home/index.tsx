@@ -85,7 +85,7 @@ const Main = () => {
 
                         <B.LiFeature>
                             <span>Weight</span>
-                            <span>8.5 M</span>
+                            <span>8.5 kg</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
