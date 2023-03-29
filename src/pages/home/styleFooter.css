@@ -30,8 +30,12 @@
 .level-bar{
     width: 300px;
     height: 100%;
-    background-color: aliceblue;
+    background-color: rgb(16, 86, 148);
     border-radius: 5px;
+}
+
+.level-bar::before{
+    content: 'asadsdasdasdsdasdasdsdsdddddddddddddddddddddddddddddddd';
 }
 
 

@@ -1,14 +1,31 @@
+import { useEffect, useState } from 'react'
 import './style.css'
 import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
-import pokemon from './../../assets/pokemon/4.png'
+import pokemon from './../../assets/pokemon/6.png'
 import elemento from './../../assets/elements/fire.svg'
 import * as H from './styles/header'
 import * as B from './styles/body'
+import * as S from './styles/footer'
 
+const Api = () => {
+    const [b, setB] = useState({})
 
+    useEffect(() => {
+        fetch('https://pokeapi.co/api/v2/pokemon/14/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                setB(json)
+                console.log(json)
+            })
+    }, [])
+
+    return b
+}
 const Header = () => {
     return (
         <H.HeaderContainer>
@@ -29,34 +46,54 @@ const Header = () => {
 
 
             <div className="list">
-                <H.UlHeader >
+                <H.UlHeader>
                     <H.LiHeader>Pokemon List</H.LiHeader>
                 </H.UlHeader>
             </div>
         </H.HeaderContainer>
     )
 }
-
+type PropsPokemonJson = {
+    name: string
+    weight: string
+    height: string
+}
 const Main = () => {
+    const [pokemonJson, setPokemonJson
+    ] = useState<PropsPokemonJson | any>({})
+    const [ability, setAbility] = useState('')
+
+    useEffect(() => {
+        fetch('https://pokeapi.co/api/v2/pokemon/6/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                setPokemonJson(json)
+                setAbility(json.abilities[0].ability.name)                
+            })
+    }, [])
+
+ 
 
     return (
         <B.BodyContainer>
 
             <B.Number>
-                <B.SpanNumber>#004</B.SpanNumber>
+                <B.SpanNumber>#{pokemonJson.id}</B.SpanNumber>
             </B.Number>
 
             <B.ArrowContainer>
                 <B.BoxArrow>
-                    <B.LeftArrow src={arrow}  alt="LEFT ARROW" />
+                    <B.LeftArrow src={arrow} alt="LEFT ARROW" />
                 </B.BoxArrow>
-                
+
                 <B.BoxArrow>
                     <B.RightArrow src={arrow} alt="RIGHT ARROW" />
                 </B.BoxArrow>
             </B.ArrowContainer>
 
-           
+
 
             <B.PokeInfo>
 
@@ -67,7 +104,7 @@ const Main = () => {
 
                     <div>
                         <B.ElementName>FIRE</B.ElementName>
-                        <B.PokemonName>Charmander</B.PokemonName>
+                        <B.PokemonName>{pokemonJson.name}</B.PokemonName>
                     </div>
                 </B.TitleBox>
 
@@ -80,12 +117,12 @@ const Main = () => {
 
                         <B.LiFeature>
                             <span>Height</span>
-                            <span>0.6 M</span>
+                            <span>{pokemonJson.height/10} M</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
                             <span>Weight</span>
-                            <span>8.5 M</span>
+                            <span>{pokemonJson.weight/10} kg</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
@@ -95,9 +132,9 @@ const Main = () => {
 
                         <B.LiFeature>
                             <span>abilities</span>
-                            <span>Blaze</span>
+                            <span>{ability}</span>
                         </B.LiFeature>
-                        
+
                     </B.UlFeature>
                 </div>
 
@@ -111,54 +148,88 @@ const Main = () => {
 }
 
 const Footer = () => {
+    const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
 
-    const habilitiesList = [
+    type PropsStat = {
+        base_stat: number
+        effort: number
+        stat: {
+            name: string
+            url: string
+        }
+    }
+
+    let stat: number[] = []
+
+    useEffect(() => {
+        fetch('https://pokeapi.co/api/v2/pokemon/6/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                setPokemonJson(json) 
+                for(let i = 0; i < json.stats; i++){
+                    
+                    stat.push(json.stats.base_stat)
+                }          
+                
+            })
+    }, [])
+
+        console.log(stat)
+
+    type Props = {
+        hab: string
+        percent: number
+    }
+
+    const habilitiesList: Props[] = [
         {
             hab: 'HP',
-            percent: 50
+            percent: 12
         },
         {
             hab: 'Attack',
-            percent: 50
+            percent: 38
         },
         {
             hab: 'Defense',
-            percent: 50
+            percent: 12
         },
         {
             hab: 'Special Attack',
-            percent: 50
+            percent: 23
         },
         {
             hab: 'Spcial Defense',
-            percent: 50
+            percent: 57
         },
         {
             hab: 'Speed',
-            percent: 50
+            percent: 37
         }
     ]
 
     return (
-        <div className='main-footer'>
-            <div className="title-footer">
+        <S.StatsContainer>
+            <S.TitleFooter>
                 <h3>Stats</h3>
-            </div>
+            </S.TitleFooter>
 
             <div className="info">
-                <ul>
+                <S.UlStats>
                     {
                         habilitiesList.map((item, key) => (
-                            <li key={key}>
+                            <S.LiStats key={key}>
                                 <span>{item.hab}</span>
-                                <div className='level-bar'>.</div>
-                            </li>
+                                <S.LevelBar level={item.percent}>.</S.LevelBar>
+                            </S.LiStats>
                         ))
                     }
 
-                </ul>
+                </S.UlStats>
             </div>
-        </div>
+        </S.StatsContainer>
     )
 }
 
