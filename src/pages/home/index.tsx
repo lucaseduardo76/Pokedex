@@ -4,7 +4,7 @@ import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
-import pokemon from './../../assets/pokemon/92.png'
+import pokemon from './../../assets/pokemon/4.png'
 import elemento from './../../assets/elements/fire.svg'
 import * as H from './styles/header'
 import * as B from './styles/body'
@@ -49,7 +49,7 @@ const Main = () => {
         <B.BodyContainer>
 
             <B.Number>
-                <B.SpanNumber>#</B.SpanNumber>
+                <B.SpanNumber>#004</B.SpanNumber>
             </B.Number>
 
             <B.ArrowContainer>
