@@ -130,6 +130,6 @@ export const ImgPokemon = styled.img`
     z-index: 99;
 
     @media(max-width: 1000px){        
-        height: 290px;
+        height: 320px;
     }
 `

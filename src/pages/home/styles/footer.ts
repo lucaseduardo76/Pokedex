@@ -1,10 +1,12 @@
-.main-footer{
+import styled from "styled-components";
+
+export const StatsContainer = styled.div`
     padding: 0 150px;
     margin-top: 10px;
     display: flex;
-}
+`
 
-.title-footer{
+export const TitleFooter = styled.div`
     margin-right: 90px;
     display: flex;
     justify-content: center;
@@ -12,39 +14,28 @@
     color: aliceblue;
     font-weight: 500;
     font-size: 20px;
-}
+`
 
-.info ul{
+export const UlStats = styled.ul`
     list-style: none;
     width: 500px;
-}
-
-.info ul li{
+`
+export const LiStats = styled.li`
     margin-bottom: 8px;
     color: aliceblue;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
-    
+`
+type PropsLevelBar = {
+    level: number
 }
-.level-bar{
-    width: 300px;
+
+export const LevelBar = styled.div<PropsLevelBar>`
+    width: ${(PropsLevelBar)=> 300 * PropsLevelBar.level / 100}px;
     height: 100%;
-    background-color: rgb(16, 86, 148);
+    background-color: aliceblue;
     border-radius: 5px;
-}
-
-.level-bar::before{
-    content: 'asadsdasdasdsdasdasdsdsdddddddddddddddddddddddddddddddd';
-}
-
-
-@media (max-width: 820px) {
-    .title-footer{
-        margin-right: 40px;
-        background-color: red;
-    }
 
     
-    
-}
+`

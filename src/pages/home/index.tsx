@@ -1,12 +1,14 @@
+import { useEffect, useState } from 'react'
 import './style.css'
 import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
-import pokemon from './../../assets/pokemon/4.png'
+import pokemon from './../../assets/pokemon/92.png'
 import elemento from './../../assets/elements/fire.svg'
 import * as H from './styles/header'
 import * as B from './styles/body'
+import * as S from './styles/footer'
 
 
 const Header = () => {
@@ -29,7 +31,7 @@ const Header = () => {
 
 
             <div className="list">
-                <H.UlHeader >
+                <H.UlHeader>
                     <H.LiHeader>Pokemon List</H.LiHeader>
                 </H.UlHeader>
             </div>
@@ -39,11 +41,15 @@ const Header = () => {
 
 const Main = () => {
 
+    
+
+    
+
     return (
         <B.BodyContainer>
 
             <B.Number>
-                <B.SpanNumber>#004</B.SpanNumber>
+                <B.SpanNumber>#</B.SpanNumber>
             </B.Number>
 
             <B.ArrowContainer>
@@ -112,53 +118,58 @@ const Main = () => {
 
 const Footer = () => {
 
-    const habilitiesList = [
+    type Props = {
+        hab: string
+        percent: number
+    }
+
+    const habilitiesList: Props[] = [
         {
             hab: 'HP',
-            percent: 50
+            percent: 5
         },
         {
             hab: 'Attack',
-            percent: 50
+            percent: 38
         },
         {
             hab: 'Defense',
-            percent: 50
+            percent: 12
         },
         {
             hab: 'Special Attack',
-            percent: 50
+            percent: 23
         },
         {
             hab: 'Spcial Defense',
-            percent: 50
+            percent: 57
         },
         {
             hab: 'Speed',
-            percent: 50
+            percent: 37
         }
     ]
 
     return (
-        <div className='main-footer'>
-            <div className="title-footer">
+        <S.StatsContainer>
+            <S.TitleFooter>
                 <h3>Stats</h3>
-            </div>
+            </S.TitleFooter>
 
             <div className="info">
-                <ul>
+                <S.UlStats>
                     {
                         habilitiesList.map((item, key) => (
-                            <li key={key}>
+                            <S.LiStats key={key}>
                                 <span>{item.hab}</span>
-                                <div className='level-bar'>.</div>
-                            </li>
+                                <S.LevelBar level={item.percent}>.</S.LevelBar>
+                            </S.LiStats>
                         ))
                     }
 
-                </ul>
+                </S.UlStats>
             </div>
-        </div>
+        </S.StatsContainer>
     )
 }
 
