@@ -4,7 +4,7 @@ import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
-import pokemon from './../../assets/pokemon/2.png'
+import pokemon from './../../assets/pokemon/4.png'
 import elemento from './../../assets/elements/fire.svg'
 import * as H from './styles/header'
 import * as B from './styles/body'
@@ -171,7 +171,7 @@ const Footer = () => {
     //let stat: number[] = []
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/2/')
+        fetch('https://pokeapi.co/api/v2/pokemon/4/')
             .then((response) => {
                 return response.json();
             })
