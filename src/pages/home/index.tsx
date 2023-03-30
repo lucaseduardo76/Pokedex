@@ -5,9 +5,11 @@ import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
 import pokemon from './../../assets/pokemon/4.png'
 import elemento from './../../assets/elements/fire.svg'
+import * as G from './indesStyle'
 import * as H from './styles/header'
 import * as B from './styles/body'
 import * as S from './styles/footer'
+
 
 
 const Header = () => {
@@ -40,7 +42,7 @@ const Header = () => {
 
 type PropsMain = {
     json: {
-        id:number
+        id: number
         name: string
         height: number
         weight: number
@@ -54,14 +56,14 @@ type PropsMain = {
 }
 
 const Main = (data: PropsMain) => {
-   
-   
-    const convertNumber = (num: number): string | number =>{
-        if(num < 10){
+
+
+    const convertNumber = (num: number): string | number => {
+        if (num < 10) {
             return `00${num}`
-        }else if(num < 100){
-            return `0${num}` 
-        }else{
+        } else if (num < 100) {
+            return `0${num}`
+        } else {
             return num
         }
     }
@@ -89,7 +91,7 @@ const Main = (data: PropsMain) => {
 
                 <B.TitleBox>
                     <div>
-                        
+
                     </div>
 
                     <div>
@@ -107,12 +109,12 @@ const Main = (data: PropsMain) => {
 
                         <B.LiFeature>
                             <span>Height</span>
-                            <span>{data.json.height/10} M</span>
+                            <span>{data.json.height / 10} M</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
                             <span>Weight</span>
-                            <span>{data.json.weight/10} kg</span>
+                            <span>{data.json.weight / 10} kg</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
@@ -134,7 +136,7 @@ const Main = (data: PropsMain) => {
 
 type PropsFooter = {
     hp: number,
-    attack:number,
+    attack: number,
     defense: number,
     specialAttack: number
     specialDefense: number
@@ -142,7 +144,7 @@ type PropsFooter = {
 }
 
 const Footer = (data: PropsFooter) => {
-    
+
     type Props = {
         hab: string,
         percent: number
@@ -207,6 +209,11 @@ type PropsPokemonJson = {
 }
 
 export const Home = () => {
+
+
+
+    const [backgroundColor, setBackgroundColor] = useState<string>('#00858a')
+
     const [change, setChange] = useState(1)
 
     const [hp, setHp] = useState<number>(0);
@@ -216,23 +223,69 @@ export const Home = () => {
     const [specialDefense, setSpecialDefense] = useState<number>(0);
     const [speed, setSpeed] = useState<number>(0);
 
-    
+
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
     const [ability, setAbility] = useState('')
     const [sprite, setSprite] = useState('')
     const [type, setType] = useState('')
 
-    const handleclicknext = (): void =>{
+    const handleclicknext = (): void => {
         setChange(change + 1)
+        console.log(type)
+        
     }
 
-    const handleclickprev = ():void =>{
-        if(change > 1){
+    const handleclickprev = (): void => {
+        if (change > 1) {
             setChange(change - 1)
         }
     }
-    
-    
+
+    const handleClickBackground = () =>{
+        switch (type) {
+            case 'fire':
+                setBackgroundColor('#ff7402')                
+            break;
+            
+            case 'grass':
+                setBackgroundColor('#33a165') 
+            break;
+
+            case 'steel':
+                setBackgroundColor('#00858a')
+            break;
+            
+            case 'water':
+                setBackgroundColor('#0050ac')
+            break;
+        
+            default:
+                setBackgroundColor('#00858a')
+                break;
+        }
+    }
+        /*
+--fire: #ff7402;
+  --grass: #33a165;
+  --steel: #00858a;
+  --water: #0050ac;
+  --psychic: #c90086;
+  --ground: #c90086;
+  --ice: #70deff;
+  --flying: #5d4e75;
+  --ghost: #4d5b64;
+  --normal: #753845;
+  --poison: #7e0058;
+  --rock: #6e1a00;
+  --fighting: #634136;
+  --dark: #272625;
+  --bug: #6e1a00;
+  --dragon: #00c431;
+  --electric: #bba909;
+  --fairy: #d31c81;
+  --unknow: #757575;
+  --shadow: #29292c;*/
+
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
@@ -240,49 +293,55 @@ export const Home = () => {
                 return response.json();
             })
             .then((json) => {
-                setPokemonJson(json) 
+                setPokemonJson(json)
+                setType(json.types[0].type.name)
+                
 
                 setHp(json.stats[0].base_stat)
                 setAttack(json.stats[1].base_stat)
                 setDefense(json.stats[2].base_stat)
                 setSpecialAttack(json.stats[3].base_stat)
                 setSpecialDefense(json.stats[4].base_stat)
-                setSpeed(json.stats[5].base_stat)                   
-                
+                setSpeed(json.stats[5].base_stat)
+
                 setPokemonJson(json)
-                setAbility(json.abilities[0].ability.name)  
+                setAbility(json.abilities[0].ability.name)
 
                 setSprite(json.sprites.front_default)
-                setType(json.types[0].type.name)
-                       
                 
+
+
             })
+
+            
     }, [change])
 
 
 
     return (
-        <div className='container-geral'>
-            <Header />
+        <G.GeneralContainer background={backgroundColor}>
+            <G.CentralContainer>
+                <Header />
 
-            <Main 
-                json={pokemonJson}
-                ability={ability}
-                functionNext={handleclicknext}
-                functionPrev={handleclickprev}
-                foto={sprite}
-                elemento={type}
-            />
+                <Main
+                    json={pokemonJson}
+                    ability={ability}
+                    functionNext={handleclicknext}
+                    functionPrev={handleclickprev}
+                    foto={sprite}
+                    elemento={type}
+                />
 
-            <Footer
-                hp={hp}
-                attack={attack}
-                defense={defense}
-                specialAttack={specialAttack}
-                specialDefense={specialDefense}
-                speed={speed}
-                
-            />
-        </div>
+                <Footer
+                    hp={hp}
+                    attack={attack}
+                    defense={defense}
+                    specialAttack={specialAttack}
+                    specialDefense={specialDefense}
+                    speed={speed}
+
+                />
+            </G.CentralContainer>
+        </G.GeneralContainer>
     )
 }
