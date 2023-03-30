@@ -4,28 +4,13 @@ import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
-import pokemon from './../../assets/pokemon/6.png'
+import pokemon from './../../assets/pokemon/2.png'
 import elemento from './../../assets/elements/fire.svg'
 import * as H from './styles/header'
 import * as B from './styles/body'
 import * as S from './styles/footer'
 
-const Api = () => {
-    const [b, setB] = useState({})
 
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/14/')
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                setB(json)
-                console.log(json)
-            })
-    }, [])
-
-    return b
-}
 const Header = () => {
     return (
         <H.HeaderContainer>
@@ -64,7 +49,7 @@ const Main = () => {
     const [ability, setAbility] = useState('')
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/6/')
+        fetch('https://pokeapi.co/api/v2/pokemon/4/')
             .then((response) => {
                 return response.json();
             })
@@ -73,14 +58,22 @@ const Main = () => {
                 setAbility(json.abilities[0].ability.name)                
             })
     }, [])
-
- 
+   
+    const convertNumber = (num: number): string | number =>{
+        if(num < 10){
+            return `00${num}`
+        }else if(num < 100){
+            return `0${num}` 
+        }else{
+            return num
+        }
+    }
 
     return (
         <B.BodyContainer>
 
             <B.Number>
-                <B.SpanNumber>#{pokemonJson.id}</B.SpanNumber>
+                <B.SpanNumber>#{convertNumber(pokemonJson.id)}</B.SpanNumber>
             </B.Number>
 
             <B.ArrowContainer>
@@ -149,6 +142,22 @@ const Main = () => {
 
 const Footer = () => {
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
+    const [hp, setHp] = useState<number>(0);
+    const [attack, setAttack] = useState<number>(0);
+    const [defense, setDefense] = useState<number>(0);
+    const [specialAttack, setSpecialAttack] = useState<number>(0);
+    const [specialDefense, setSpecialDefense] = useState<number>(0);
+    const [speed, setSpeed] = useState<number>(0);
+    
+
+
+
+
+
+
+
+
+
 
     type PropsStat = {
         base_stat: number
@@ -159,54 +168,57 @@ const Footer = () => {
         }
     }
 
-    let stat: number[] = []
+    //let stat: number[] = []
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/6/')
+        fetch('https://pokeapi.co/api/v2/pokemon/2/')
             .then((response) => {
                 return response.json();
             })
             .then((json) => {
                 setPokemonJson(json) 
-                for(let i = 0; i < json.stats; i++){
-                    
-                    stat.push(json.stats.base_stat)
-                }          
+                setHp(json.stats[0].base_stat)
+                setAttack(json.stats[1].base_stat)
+                setDefense(json.stats[2].base_stat)
+                setSpecialAttack(json.stats[3].base_stat)
+                setSpecialDefense(json.stats[4].base_stat)
+                setSpeed(json.stats[5].base_stat)   
+                console.log(typeof json.stats[0].base_stat)       
+                       
                 
             })
     }, [])
 
-        console.log(stat)
 
     type Props = {
-        hab: string
+        hab: string,
         percent: number
     }
 
     const habilitiesList: Props[] = [
         {
             hab: 'HP',
-            percent: 12
+            percent: hp
         },
         {
             hab: 'Attack',
-            percent: 38
+            percent: attack
         },
         {
             hab: 'Defense',
-            percent: 12
+            percent: defense
         },
         {
             hab: 'Special Attack',
-            percent: 23
+            percent: specialAttack
         },
         {
-            hab: 'Spcial Defense',
-            percent: 57
+            hab: 'Special Defense',
+            percent: specialDefense
         },
         {
             hab: 'Speed',
-            percent: 37
+            percent: speed
         }
     ]
 
