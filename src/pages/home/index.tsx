@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './style.css'
-import './styleFooter.css'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
 import arrow from './../../assets/icons/arrow.svg'
@@ -38,26 +37,24 @@ const Header = () => {
         </H.HeaderContainer>
     )
 }
-type PropsPokemonJson = {
-    name: string
-    weight: string
-    height: string
-}
-const Main = () => {
-    const [pokemonJson, setPokemonJson
-    ] = useState<PropsPokemonJson | any>({})
-    const [ability, setAbility] = useState('')
 
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/4/')
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                setPokemonJson(json)
-                setAbility(json.abilities[0].ability.name)                
-            })
-    }, [])
+type PropsMain = {
+    json: {
+        id:number
+        name: string
+        height: number
+        weight: number
+    },
+    ability: string,
+    functionNext: () => void,
+    functionPrev: () => void,
+    foto: string,
+    elemento: string
+
+}
+
+const Main = (data: PropsMain) => {
+   
    
     const convertNumber = (num: number): string | number =>{
         if(num < 10){
@@ -73,15 +70,15 @@ const Main = () => {
         <B.BodyContainer>
 
             <B.Number>
-                <B.SpanNumber>#{convertNumber(pokemonJson.id)}</B.SpanNumber>
+                <B.SpanNumber>#{convertNumber(data.json.id)}</B.SpanNumber>
             </B.Number>
 
             <B.ArrowContainer>
-                <B.BoxArrow>
+                <B.BoxArrow onClick={data.functionPrev}>
                     <B.LeftArrow src={arrow} alt="LEFT ARROW" />
                 </B.BoxArrow>
 
-                <B.BoxArrow>
+                <B.BoxArrow onClick={data.functionNext}>
                     <B.RightArrow src={arrow} alt="RIGHT ARROW" />
                 </B.BoxArrow>
             </B.ArrowContainer>
@@ -92,12 +89,12 @@ const Main = () => {
 
                 <B.TitleBox>
                     <div>
-                        <B.ElementImg src={elemento} alt="" />
+                        
                     </div>
 
                     <div>
-                        <B.ElementName>FIRE</B.ElementName>
-                        <B.PokemonName>{pokemonJson.name}</B.PokemonName>
+                        <B.ElementName>{data.elemento}</B.ElementName>
+                        <B.PokemonName>{data.json.name}</B.PokemonName>
                     </div>
                 </B.TitleBox>
 
@@ -110,22 +107,17 @@ const Main = () => {
 
                         <B.LiFeature>
                             <span>Height</span>
-                            <span>{pokemonJson.height/10} M</span>
+                            <span>{data.json.height/10} M</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
                             <span>Weight</span>
-                            <span>{pokemonJson.weight/10} kg</span>
-                        </B.LiFeature>
-
-                        <B.LiFeature>
-                            <span>Category</span>
-                            <span>Lizard</span>
+                            <span>{data.json.weight/10} kg</span>
                         </B.LiFeature>
 
                         <B.LiFeature>
                             <span>abilities</span>
-                            <span>{ability}</span>
+                            <span>{data.ability}</span>
                         </B.LiFeature>
 
                     </B.UlFeature>
@@ -134,62 +126,23 @@ const Main = () => {
             </B.PokeInfo>
 
             <B.BoxImgPokemon>
-                <B.ImgPokemon src={pokemon} alt="" />
+                <B.ImgPokemon src={data.foto} alt="" />
             </B.BoxImgPokemon>
         </B.BodyContainer>
     )
 }
 
-const Footer = () => {
-    const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
-    const [hp, setHp] = useState<number>(0);
-    const [attack, setAttack] = useState<number>(0);
-    const [defense, setDefense] = useState<number>(0);
-    const [specialAttack, setSpecialAttack] = useState<number>(0);
-    const [specialDefense, setSpecialDefense] = useState<number>(0);
-    const [speed, setSpeed] = useState<number>(0);
+type PropsFooter = {
+    hp: number,
+    attack:number,
+    defense: number,
+    specialAttack: number
+    specialDefense: number
+    speed: number
+}
+
+const Footer = (data: PropsFooter) => {
     
-
-
-
-
-
-
-
-
-
-
-    type PropsStat = {
-        base_stat: number
-        effort: number
-        stat: {
-            name: string
-            url: string
-        }
-    }
-
-    //let stat: number[] = []
-
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/4/')
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                setPokemonJson(json) 
-                setHp(json.stats[0].base_stat)
-                setAttack(json.stats[1].base_stat)
-                setDefense(json.stats[2].base_stat)
-                setSpecialAttack(json.stats[3].base_stat)
-                setSpecialDefense(json.stats[4].base_stat)
-                setSpeed(json.stats[5].base_stat)   
-                console.log(typeof json.stats[0].base_stat)       
-                       
-                
-            })
-    }, [])
-
-
     type Props = {
         hab: string,
         percent: number
@@ -198,27 +151,27 @@ const Footer = () => {
     const habilitiesList: Props[] = [
         {
             hab: 'HP',
-            percent: hp
+            percent: data.hp
         },
         {
             hab: 'Attack',
-            percent: attack
+            percent: data.attack
         },
         {
             hab: 'Defense',
-            percent: defense
+            percent: data.defense
         },
         {
             hab: 'Special Attack',
-            percent: specialAttack
+            percent: data.specialAttack
         },
         {
             hab: 'Special Defense',
-            percent: specialDefense
+            percent: data.specialDefense
         },
         {
             hab: 'Speed',
-            percent: speed
+            percent: data.speed
         }
     ]
 
@@ -247,13 +200,89 @@ const Footer = () => {
 
 
 
+type PropsPokemonJson = {
+    name: string
+    weight: string
+    height: string
+}
 
 export const Home = () => {
+    const [change, setChange] = useState(1)
+
+    const [hp, setHp] = useState<number>(0);
+    const [attack, setAttack] = useState<number>(0);
+    const [defense, setDefense] = useState<number>(0);
+    const [specialAttack, setSpecialAttack] = useState<number>(0);
+    const [specialDefense, setSpecialDefense] = useState<number>(0);
+    const [speed, setSpeed] = useState<number>(0);
+
+    
+    const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
+    const [ability, setAbility] = useState('')
+    const [sprite, setSprite] = useState('')
+    const [type, setType] = useState('')
+
+    const handleclicknext = (): void =>{
+        setChange(change + 1)
+    }
+
+    const handleclickprev = ():void =>{
+        if(change > 1){
+            setChange(change - 1)
+        }
+    }
+    
+    
+
+    useEffect(() => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                setPokemonJson(json) 
+
+                setHp(json.stats[0].base_stat)
+                setAttack(json.stats[1].base_stat)
+                setDefense(json.stats[2].base_stat)
+                setSpecialAttack(json.stats[3].base_stat)
+                setSpecialDefense(json.stats[4].base_stat)
+                setSpeed(json.stats[5].base_stat)                   
+                
+                setPokemonJson(json)
+                setAbility(json.abilities[0].ability.name)  
+
+                setSprite(json.sprites.front_default)
+                setType(json.types[0].type.name)
+                       
+                
+            })
+    }, [change])
+
+
+
     return (
         <div className='container-geral'>
             <Header />
-            <Main />
-            <Footer />
+
+            <Main 
+                json={pokemonJson}
+                ability={ability}
+                functionNext={handleclicknext}
+                functionPrev={handleclickprev}
+                foto={sprite}
+                elemento={type}
+            />
+
+            <Footer
+                hp={hp}
+                attack={attack}
+                defense={defense}
+                specialAttack={specialAttack}
+                specialDefense={specialDefense}
+                speed={speed}
+                
+            />
         </div>
     )
 }
