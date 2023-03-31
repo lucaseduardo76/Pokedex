@@ -352,7 +352,7 @@ export const Home = () => {
 
     useEffect(()=>{
         handleClickBackground(type)
-    }, [change])
+    }, [change, type])
 
 
     return (
