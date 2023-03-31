@@ -209,11 +209,6 @@ type PropsPokemonJson = {
 }
 
 export const Home = () => {
-
-
-
-    const [backgroundColor, setBackgroundColor] = useState<string>('#00858a')
-
     const [change, setChange] = useState(1)
 
     const [hp, setHp] = useState<number>(0);
@@ -223,6 +218,7 @@ export const Home = () => {
     const [specialDefense, setSpecialDefense] = useState<number>(0);
     const [speed, setSpeed] = useState<number>(0);
 
+    const [backgroundColor, setBackgroundColor] = useState<string>('#33a165')
 
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
     const [ability, setAbility] = useState('')
@@ -230,9 +226,7 @@ export const Home = () => {
     const [type, setType] = useState('')
 
     const handleclicknext = (): void => {
-        setChange(change + 1)
-        console.log(type)
-        
+        setChange(change + 1)        
     }
 
     const handleclickprev = (): void => {
@@ -241,8 +235,8 @@ export const Home = () => {
         }
     }
 
-    const handleClickBackground = () =>{
-        switch (type) {
+    const handleClickBackground = (elemento: string) =>{
+        switch (elemento) {
             case 'fire':
                 setBackgroundColor('#ff7402')                
             break;
@@ -258,35 +252,74 @@ export const Home = () => {
             case 'water':
                 setBackgroundColor('#0050ac')
             break;
+
+            case 'psychic':
+                setBackgroundColor('#c90086')
+            break;
+
+            case 'ground':
+                setBackgroundColor('#c90086')
+            break;
+
+            case 'ice':
+                setBackgroundColor('#c90086')
+            break;
+
+            case 'flying':
+                setBackgroundColor('#5d4e75')
+            break;
+
+            case 'ghost':
+                setBackgroundColor('#4d5b64')
+            break;
+
+            case 'normal':
+                setBackgroundColor('#753845')
+            break;
+
+            case 'poison':
+                setBackgroundColor ('#7e0058')
+            break;
+
+            case 'rock':
+                setBackgroundColor ('#6e1a00')
+            break;
+
+            case 'fighting':
+                setBackgroundColor ('#634136')
+            break;
+
+            case 'dark':
+                setBackgroundColor ('#272625')
+            break;
+
+            case 'dragon':
+                setBackgroundColor ('#7e0058')
+            break;
+
+            case 'electric':
+                setBackgroundColor ('#bba909')
+            break;
+
+            case 'fairy':
+                setBackgroundColor ('#d31c81')
+            break;
+
+
+            case 'shadow':
+                setBackgroundColor ('#29292c')
+            break;
+        
+            case 'unknow':
+                setBackgroundColor ('#757575')
+            break;
         
             default:
-                setBackgroundColor('#00858a')
+                setBackgroundColor('#33a165')
                 break;
         }
     }
-        /*
---fire: #ff7402;
-  --grass: #33a165;
-  --steel: #00858a;
-  --water: #0050ac;
-  --psychic: #c90086;
-  --ground: #c90086;
-  --ice: #70deff;
-  --flying: #5d4e75;
-  --ghost: #4d5b64;
-  --normal: #753845;
-  --poison: #7e0058;
-  --rock: #6e1a00;
-  --fighting: #634136;
-  --dark: #272625;
-  --bug: #6e1a00;
-  --dragon: #00c431;
-  --electric: #bba909;
-  --fairy: #d31c81;
-  --unknow: #757575;
-  --shadow: #29292c;*/
-
-
+    
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
             .then((response) => {
@@ -309,6 +342,7 @@ export const Home = () => {
 
                 setSprite(json.sprites.front_default)
                 
+                console.log(type)
 
 
             })
@@ -316,6 +350,9 @@ export const Home = () => {
             
     }, [change])
 
+    useEffect(()=>{
+        handleClickBackground(type)
+    }, [change])
 
 
     return (
