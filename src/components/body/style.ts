@@ -28,9 +28,9 @@ export const Number = styled.div`
     }
 
     @media(max-width: 730px){
-        margin-top: -0px;
-        margin-left: 25px;
-        left: 0;
+        margin-top: -400px;
+        margin-right: 25px;
+        right: 0;
     }
 `
 
@@ -65,6 +65,10 @@ export const ArrowContainer = styled.div`
 
     @media(max-width: 765px){        
         width: 640px;
+    }
+
+    @media(max-width: 685px){        
+        width: 520px;
     }
 
 
@@ -129,8 +133,15 @@ export const PokemonName = styled.div`
     }
 `
 export const ContainerInfo = styled.div`
+    width: 370px; 
+    z-index: 999;
+
     @media(max-width: 870px){
         width: 450px;
+    }
+
+    @media(max-width: 685px){
+        width: 340px;
     }
 `
 export const Description = styled.div`   

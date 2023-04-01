@@ -10,6 +10,10 @@ export const StatsContainer = styled.div`
         padding: 0 70px;
         margin-top: 30px;
     }
+
+    @media(max-width: 630px){
+        padding: 0 40px;
+    }
 `
 
 export const TitleFooter = styled.div`
@@ -20,6 +24,10 @@ export const TitleFooter = styled.div`
     color: aliceblue;
     font-weight: 500;
     font-size: 20px;
+
+    @media(max-width: 630px){
+        margin-right: 50px;
+    }
 `
 
 export const UlStats = styled.ul`
@@ -52,6 +60,10 @@ export const LevelBar = styled.div<PropsLevelBar>`
     @media(max-width: 765px){        
         width: ${(PropsLevelBar)=> 200 * PropsLevelBar.level / 200}px;
     }
+
+    @media(max-width: 630px){        
+        width: ${(PropsLevelBar)=> 150 * PropsLevelBar.level / 200}px;
+    }   
 
     
 `

@@ -22,4 +22,8 @@ export const CentralContainer = styled.div`
     @media (max-width:805px) {
         width: 700px;    
     }
+
+    @media (max-width:685px) {
+        width: 100%;   
+    }
 `

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Header } from './components/header' 
+import { Header } from './components/header'
 import { Body } from './components/body'
 import { Footer } from './components/footer'
 import { SwitchBackgroundColor } from './interface/colorSelector/switchColor'
@@ -22,27 +22,27 @@ export const App = () => {
     const [specialDefense, setSpecialDefense] = useState<number>(0);
     const [speed, setSpeed] = useState<number>(0);
 
-    
+
     const [inputV, setInputV] = useState(0)
-    const [background, setBackground] = useState<string>('#151385') 
+    const [background, setBackground] = useState<string>('#151385')
 
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
     const [ability, setAbility] = useState('')
     const [type, setType] = useState('')
 
     const handleclicknext = (): void => {
-        if(change < 1008){
+        if (change < 1008) {
             setChange(change + 1)
-        }else{
+        } else {
             setChange(1)
         }
-       
+
     }
 
     const handleclickprev = (): void => {
         if (change > 1) {
             setChange(change - 1)
-        }else{
+        } else {
             setChange(1008)
         }
     }
@@ -51,7 +51,12 @@ export const App = () => {
         setChange(inputV)
     }
 
- 
+    const changeByClick = (/*event: React.ChangeEvent<HTMLBodyElement>*/) => {
+        console.log('asdasd')
+
+    }
+
+
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
             .then((response) => {
@@ -59,7 +64,7 @@ export const App = () => {
             })
             .then((json) => {
                 setPokemonJson(json)
-                setType(json.types[0].type.name)             
+                setType(json.types[0].type.name)
                 setHp(json.stats[0].base_stat)
                 setAttack(json.stats[1].base_stat)
                 setDefense(json.stats[2].base_stat)
@@ -69,43 +74,45 @@ export const App = () => {
                 setPokemonJson(json)
                 setAbility(json.abilities[0].ability.name)
 
-                
+
 
             })
     }, [change])
 
-    useEffect(()=>{
+    useEffect(() => {
         setBackground(SwitchBackgroundColor(type))
 
     }, [change, type])
 
-    
+
 
     return (
-        <G.GeneralContainer background={background}>
-            <G.CentralContainer>
-                <Header input={inputV}/>
+        <div onKeyUp={changeByClick}>
+            <G.GeneralContainer background={background} >
+                <G.CentralContainer>
+                    <Header input={inputV} />
 
-                <Body
-                    json={pokemonJson}
-                    ability={ability}
-                    functionNext={handleclicknext}
-                    functionPrev={handleclickprev}
-                    elemento={type}
-                    imgId={change}
-                />
+                    <Body
+                        json={pokemonJson}
+                        ability={ability}
+                        functionNext={handleclicknext}
+                        functionPrev={handleclickprev}
+                        elemento={type}
+                        imgId={change}
+                    />
 
-                <Footer
-                    hp={hp}
-                    attack={attack}
-                    defense={defense}
-                    specialAttack={specialAttack}
-                    specialDefense={specialDefense}
-                    speed={speed}
+                    <Footer
+                        hp={hp}
+                        attack={attack}
+                        defense={defense}
+                        specialAttack={specialAttack}
+                        specialDefense={specialDefense}
+                        speed={speed}
 
-                />
-            </G.CentralContainer>
-        </G.GeneralContainer>
+                    />
+                </G.CentralContainer>
+            </G.GeneralContainer>
+        </div>
     )
 }
 
