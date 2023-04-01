@@ -13,9 +13,13 @@ export const GeneralContainer = styled.div<PropsGeneral>`
 
 export const CentralContainer = styled.div`
     max-width: 1200px;
-    height: 130vh;
+    
 
     @media (max-width:1000px) {
-            width: 800px;    
+        width: 800px;    
+    }
+
+    @media (max-width:805px) {
+        width: 700px;    
     }
 `

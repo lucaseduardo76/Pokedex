@@ -9,19 +9,43 @@ export const BodyContainer = styled.div`
     @media(max-width: 1000px){        
         gap: 30px;
     }
+
+    @media(max-width: 870px){
+        flex-direction: column-reverse;
+        align-items: center;        
+        margin-top: 40px;
+    }
 `
 
 export const Number = styled.div`
     position: absolute;
-    margin-right: -100px;
-    margin-top: -40px;
+    margin-right: -20px;
+    margin-top: -90px;
     z-index: 1;
+
+    @media(max-width: 870px){        
+        margin-top: -200px;
+    }
+
+    @media(max-width: 730px){
+        margin-top: -0px;
+        margin-left: 25px;
+        left: 0;
+    }
 `
 
 export const SpanNumber = styled.span`
-    font-size: 250px;
+    font-size: 370px;
     font-weight: 800;
     color: rgba(255, 255, 255, 0.2);
+
+    @media(max-width: 870px){
+        font-size: 300px;
+    }
+
+    @media(max-width: 730px){
+        font-size: 90px;
+    }
 `
 
 export const ArrowContainer = styled.div`
@@ -33,10 +57,17 @@ export const ArrowContainer = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     max-width: 1200px;
+    z-index: 100;
 
     @media(max-width: 1000px){        
         width: 750px;
     }
+
+    @media(max-width: 765px){        
+        width: 640px;
+    }
+
+
 `
 export const BoxArrow = styled.div`
     height: 70px;
@@ -97,7 +128,11 @@ export const PokemonName = styled.div`
         font-size: 40px;
     }
 `
-
+export const ContainerInfo = styled.div`
+    @media(max-width: 870px){
+        width: 450px;
+    }
+`
 export const Description = styled.div`   
     margin-bottom: 35px;
     font-size: 13px;
@@ -123,13 +158,16 @@ export const LiFeature = styled.li`
 export const BoxImgPokemon = styled.div`
     display: flex;
     align-items: end;
+
 `
 
 export const ImgPokemon = styled.img`
-    height: 400px;
+    height: 370px;
     z-index: 99;
 
     @media(max-width: 1000px){        
         height: 320px;
     }
+
+    
 `

@@ -4,6 +4,12 @@ export const StatsContainer = styled.div`
     padding: 0 150px;
     margin-top: 10px;
     display: flex;
+    margin-bottom: 20px;
+
+    @media(max-width: 870px){
+        padding: 0 70px;
+        margin-top: 30px;
+    }
 `
 
 export const TitleFooter = styled.div`
@@ -19,6 +25,12 @@ export const TitleFooter = styled.div`
 export const UlStats = styled.ul`
     list-style: none;
     width: 500px;
+   
+
+    @media(max-width: 765px){        
+        width: 400px;
+    }
+    
 `
 export const LiStats = styled.li`
     margin-bottom: 8px;
@@ -36,6 +48,10 @@ export const LevelBar = styled.div<PropsLevelBar>`
     height: 100%;
     background-color: aliceblue;
     border-radius: 5px;
+
+    @media(max-width: 765px){        
+        width: ${(PropsLevelBar)=> 200 * PropsLevelBar.level / 200}px;
+    }
 
     
 `

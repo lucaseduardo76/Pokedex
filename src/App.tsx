@@ -23,7 +23,7 @@ export const App = () => {
     const [speed, setSpeed] = useState<number>(0);
 
     
-
+    const [inputV, setInputV] = useState(0)
     const [background, setBackground] = useState<string>('#151385') 
 
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
@@ -31,15 +31,24 @@ export const App = () => {
     const [type, setType] = useState('')
 
     const handleclicknext = (): void => {
-        setChange(change + 1)
-        
+        if(change < 1008){
+            setChange(change + 1)
+        }else{
+            setChange(1)
+        }
        
     }
 
     const handleclickprev = (): void => {
         if (change > 1) {
             setChange(change - 1)
+        }else{
+            setChange(1008)
         }
+    }
+
+    const ChangeInput = (): void => {
+        setChange(inputV)
     }
 
  
@@ -68,7 +77,6 @@ export const App = () => {
     useEffect(()=>{
         setBackground(SwitchBackgroundColor(type))
 
-        console.log(background)
     }, [change, type])
 
     
@@ -76,7 +84,7 @@ export const App = () => {
     return (
         <G.GeneralContainer background={background}>
             <G.CentralContainer>
-                <Header />
+                <Header input={inputV}/>
 
                 <Body
                     json={pokemonJson}

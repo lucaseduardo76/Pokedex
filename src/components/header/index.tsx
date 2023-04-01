@@ -1,15 +1,27 @@
 import * as H from './style'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
+import { useState } from 'react'
 
-export const Header = () => {
+type Props = {
+    input: number
+}
+
+export const Header = (data: Props) => {
+    const [inputValue, setinputValue] = useState('')
+
+    const handleInputFunction = (event: React.ChangeEvent<HTMLInputElement>) =>{
+        setinputValue(event.target.value)
+        data.input = Number(inputValue)
+    }
+
     return (
         <H.HeaderContainer>
             <H.SearchContainer>
 
                 <H.InputContainer>
                     <label>
-                        <H.Input type="text" placeholder="Search Here" maxLength={30} />
+                        <H.Input type="text" placeholder="Search Here" maxLength={30} max={1008} onChange={handleInputFunction}/>
                     </label>
                 </H.InputContainer>
 

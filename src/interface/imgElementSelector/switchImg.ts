@@ -8,7 +8,7 @@ import fire from './../../assets/elements/fire.svg'
 import flying from './../../assets/elements/flying.svg'
 import ghost from './../../assets/elements/ghost.svg'
 import grass from './../../assets/elements/grass.svg'
-import ground from './../../assets/elements/ground.svg'
+import ground from './../../assets/elements/ground.png'
 import ice from './../../assets/elements/ice.svg'
 import normal from './../../assets/elements/normal.svg'
 import poison from './../../assets/elements/poison.svg'
@@ -30,7 +30,7 @@ export const SwitchElementImg = (elemento: string): string =>{
         break;
         
         case 'grass':
-            img = grass 
+            img = grass
         break;
 
         case 'steel':
