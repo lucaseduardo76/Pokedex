@@ -6,7 +6,8 @@ type PropsGeneral = {
 
 export const GeneralContainer = styled.div<PropsGeneral>`
     background-color: ${PropsGeneral => PropsGeneral.background};
-    width: 100vw;
+    min-height: 100vh;
+    width: 97vw;
     display:flex;
     justify-content: center;
 `

@@ -20,7 +20,7 @@ export const Footer = (data: PropsFooter) => {
 
     const habilitiesList: Props[] = [
         {
-            hab: 'HP',
+            hab: 'Hp',
             percent: data.hp
         },
         {
@@ -57,7 +57,10 @@ export const Footer = (data: PropsFooter) => {
                         habilitiesList.map((item, key) => (
                             <S.LiStats key={key}>
                                 <span>{item.hab}</span>
-                                <S.LevelBar level={item.percent}>.</S.LevelBar>
+                                <S.ContainerBars>
+                                    <S.LevelBar level={item.percent}>.</S.LevelBar>
+                                    <span>{item.percent}</span>
+                                </S.ContainerBars>
                             </S.LiStats>
                         ))
                     }

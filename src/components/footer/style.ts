@@ -33,8 +33,7 @@ export const TitleFooter = styled.div`
 export const UlStats = styled.ul`
     list-style: none;
     width: 500px;
-   
-
+    
     @media(max-width: 765px){        
         width: 400px;
     }
@@ -46,16 +45,35 @@ export const LiStats = styled.li`
     font-weight: 500;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    font-size: 16px;
 `
+
+export const ContainerBars = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 370px;
+    height: 100%;
+    align-items: center;
+
+    @media(max-width: 765px){
+        width: 250px;
+    }
+`
+
 type PropsLevelBar = {
     level: number
 }
 
+
 export const LevelBar = styled.div<PropsLevelBar>`
-    width: ${(PropsLevelBar)=> 300 * PropsLevelBar.level / 200}px;
+    width: ${(PropsLevelBar)=> 250 * PropsLevelBar.level / 200}px;
     height: 100%;
-    background-color: aliceblue;
-    border-radius: 5px;
+    color: rgba(0,0,0,0);
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    
 
     @media(max-width: 765px){        
         width: ${(PropsLevelBar)=> 200 * PropsLevelBar.level / 200}px;
