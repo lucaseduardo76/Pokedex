@@ -75,4 +75,9 @@ export const ImgIcons = styled.img`
 `
 export const PokemonList = styled.img`
     height: 50px;
+    cursor: pointer;
+    
+`
+export const Link =styled.a`
+    z-index: 99;
 `

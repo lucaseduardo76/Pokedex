@@ -39,10 +39,11 @@ export const Header = (data: Props) => {
             </H.SearchContainer>
 
 
-            <div className="list">
-                <H.PokemonList src={pokeball} alt="" />
-                
-            </div>
+            <H.Link href='https://lucased.netlify.app/' target='_blank'>
+                <H.PokemonList src={pokeball} alt="" />                
+            </H.Link>
+
+            
         </H.HeaderContainer>
     )
 }
