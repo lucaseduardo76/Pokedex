@@ -4,6 +4,7 @@ import { Body } from './components/body'
 import { Footer } from './components/footer'
 import { SwitchBackgroundColor } from './interface/colorSelector/switchColor'
 import * as G from './style'
+import pokeball from './assets/icons/pokeball.webp'
 
 
 type PropsPokemonJson = {
@@ -14,6 +15,7 @@ type PropsPokemonJson = {
 
 export const App = () => {
     const [change, setChange] = useState(1)
+    const [load, setLoad] = useState(true)
 
     const [hp, setHp] = useState<number>(0);
     const [attack, setAttack] = useState<number>(0);
@@ -51,15 +53,20 @@ export const App = () => {
         setChange(inputV)
     }
 
-    const changeByClick = (/*event: React.ChangeEvent<HTMLBodyElement>*/) => {
-        console.log('asdasd')
-
+    const changeByClick = (event: any) => {
+        if (event.keyCode == 39) {
+            handleclicknext()
+        } else if (event.keyCode == 37) {
+            handleclickprev()
+        }
     }
 
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
             .then((response) => {
+                setLoad(false)
+
                 return response.json();
             })
             .then((json) => {
@@ -73,9 +80,7 @@ export const App = () => {
                 setSpeed(json.stats[5].base_stat)
                 setPokemonJson(json)
                 setAbility(json.abilities[0].ability.name)
-
-
-
+                setLoad(true)
             })
     }, [change])
 
@@ -86,31 +91,48 @@ export const App = () => {
 
 
 
+    useEffect(() => {
+        window.addEventListener('keyup', changeByClick);
+
+        // Remova o listener quando o componente for desmontado
+        return () => {
+            window.removeEventListener('keyup', changeByClick);
+        };
+    }, []);
+
+
+
     return (
         <div onKeyUp={changeByClick}>
             <G.GeneralContainer background={background} >
-                <G.CentralContainer>
-                    <Header input={inputV} />
+                {load &&
+                    <G.CentralContainer>
+                        <Header input={inputV} />
 
-                    <Body
-                        json={pokemonJson}
-                        ability={ability}
-                        functionNext={handleclicknext}
-                        functionPrev={handleclickprev}
-                        elemento={type}
-                        imgId={change}
-                    />
+                        <Body
+                            json={pokemonJson}
+                            ability={ability}
+                            functionNext={handleclicknext}
+                            functionPrev={handleclickprev}
+                            elemento={type}
+                            imgId={change}
+                        />
 
-                    <Footer
-                        hp={hp}
-                        attack={attack}
-                        defense={defense}
-                        specialAttack={specialAttack}
-                        specialDefense={specialDefense}
-                        speed={speed}
+                        <Footer
+                            hp={hp}
+                            attack={attack}
+                            defense={defense}
+                            specialAttack={specialAttack}
+                            specialDefense={specialDefense}
+                            speed={speed}
 
-                    />
-                </G.CentralContainer>
+                        />
+                    </G.CentralContainer>
+                }
+
+                {!load  &&
+                    <G.Loading src={pokeball} alt='LOADING...'/>
+                }
             </G.GeneralContainer>
         </div>
     )

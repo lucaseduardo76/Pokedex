@@ -14,6 +14,10 @@ export const StatsContainer = styled.div`
     @media(max-width: 630px){
         padding: 0 40px;
     }
+
+    @media(max-width: 585px){
+        justify-content:center;
+    }
 `
 
 export const TitleFooter = styled.div`
@@ -28,6 +32,10 @@ export const TitleFooter = styled.div`
     @media(max-width: 630px){
         margin-right: 50px;
     }
+
+    @media(max-width: 585px){
+        display: none;
+    }
 `
 
 export const UlStats = styled.ul`
@@ -36,6 +44,10 @@ export const UlStats = styled.ul`
     
     @media(max-width: 765px){        
         width: 400px;
+    }
+
+    @media(max-width: 430px){        
+        width: 350px;
     }
     
 `
@@ -60,6 +72,10 @@ export const ContainerBars = styled.div`
     @media(max-width: 765px){
         width: 250px;
     }
+
+    @media(max-width: 430px){
+        width: 200px;
+    }
 `
 
 type PropsLevelBar = {
@@ -81,6 +97,10 @@ export const LevelBar = styled.div<PropsLevelBar>`
 
     @media(max-width: 630px){        
         width: ${(PropsLevelBar)=> 150 * PropsLevelBar.level / 200}px;
+    }
+    
+    @media(max-width: 430px){        
+        width: ${(PropsLevelBar)=> 100 * PropsLevelBar.level / 200}px;
     }   
 
     

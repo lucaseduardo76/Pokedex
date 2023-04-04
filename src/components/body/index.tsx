@@ -20,13 +20,16 @@ type PropsMain = {
 }
 
 export const Body = (data: PropsMain) => {
+
     const [imgElement, setImgElement] = useState('');
     let pokemonNome: string = 'pokemon'
     let pokemonElemento: string = 'unkown'
+
     if (data.json.name != undefined) {
         pokemonNome = data.json.name.charAt(0).toUpperCase() + data.json.name.slice(1);
         pokemonElemento = data.elemento.charAt(0).toUpperCase() + data.elemento.slice(1);
     }
+
     const convertNumber = (num: number): string | number => {
         if (num < 10) {
             return `00${num}`
@@ -40,6 +43,8 @@ export const Body = (data: PropsMain) => {
     useEffect(() => {
         setImgElement(SwitchElementImg(data.elemento))
     }, [data.elemento])
+
+
 
     return (
         <B.BodyContainer>

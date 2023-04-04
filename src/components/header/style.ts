@@ -6,6 +6,10 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     height: 70px;
     padding: 0 40px;
+
+    @media(max-width: 430px){        
+        padding: 0 10px; 
+    }
 `
 
 export const SearchContainer = styled.div`
@@ -17,6 +21,14 @@ export const SearchContainer = styled.div`
     width: 400px;
     padding: 5px;
     border-radius: 10px;
+    
+    @media(max-width: 585px){
+        width: 300px;
+    }
+
+    @media(max-width: 430px){
+        width: 240px;  
+    }
 `
 export const InputContainer = styled.div`
     height: 35px;
@@ -38,6 +50,8 @@ export const Input = styled.input`
     &:focus{
         outline: none;
     }
+
+    
 `
 export const Icons = styled.div`
     flex: 1;
@@ -59,11 +73,6 @@ export const ImgIcons = styled.img`
         padding: 5px;
     }
 `
-export const UlHeader = styled.ul`
-    list-style: none;
-`
-
-export const LiHeader = styled.li`
-    font-size: 15px;
-    color:#fff;
+export const PokemonList = styled.img`
+    height: 50px;
 `

@@ -59,6 +59,7 @@ export const ArrowContainer = styled.div`
     max-width: 1200px;
     z-index: 100;
 
+    
     @media(max-width: 1000px){        
         width: 750px;
     }
@@ -71,6 +72,17 @@ export const ArrowContainer = styled.div`
         width: 520px;
     }
 
+    @media(max-width: 540px){        
+        width: 460px;
+    }
+    @media(max-width: 470px){        
+        width: 400px;       
+        height: 140px;
+    }
+
+    @media(max-width: 400px){        
+        width: 360px;
+    }
 
 `
 export const BoxArrow = styled.div`
@@ -83,10 +95,14 @@ export const BoxArrow = styled.div`
     align-items: center;
     cursor: pointer;
     transition: .5s ease ;
-
     &:hover{        
         border-radius: 50px;    
         background-color: rgba(240, 248, 255, 0.411);
+    }
+
+    @media(max-width: 470px){        
+        height: 40px;
+        width: 40px;
     }
 `
 

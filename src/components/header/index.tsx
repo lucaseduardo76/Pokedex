@@ -1,7 +1,8 @@
 import * as H from './style'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import pokeball from './../../assets/icons/pokeball.webp'
 
 type Props = {
     input: number
@@ -10,18 +11,23 @@ type Props = {
 export const Header = (data: Props) => {
     const [inputValue, setinputValue] = useState('')
 
+
     const handleInputFunction = (event: React.ChangeEvent<HTMLInputElement>) =>{
+                  
         setinputValue(event.target.value)
-        data.input = Number(inputValue)
+        
     }
 
+    useEffect(()=>{
+        console.log(inputValue)
+    }, [inputValue])
     return (
         <H.HeaderContainer>
             <H.SearchContainer>
 
                 <H.InputContainer>
                     <label>
-                        <H.Input type="text" placeholder="Search Here" maxLength={30} max={1008} onChange={handleInputFunction}/>
+                        <H.Input type="number" placeholder="Search Here" maxLength={30} max={1008} value={inputValue} onChange={handleInputFunction}/>
                     </label>
                 </H.InputContainer>
 
@@ -34,9 +40,8 @@ export const Header = (data: Props) => {
 
 
             <div className="list">
-                <H.UlHeader>
-                    <H.LiHeader>Pokemon List</H.LiHeader>
-                </H.UlHeader>
+                <H.PokemonList src={pokeball} alt="" />
+                
             </div>
         </H.HeaderContainer>
     )
