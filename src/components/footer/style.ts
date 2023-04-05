@@ -100,7 +100,7 @@ export const LevelBar = styled.div<PropsLevelBar>`
     }
     
     @media(max-width: 430px){        
-        width: ${(PropsLevelBar)=> 100 * PropsLevelBar.level / 200}px;
+        width: ${(PropsLevelBar)=> 125 * PropsLevelBar.level / 200}px;
     }   
 
     
