@@ -14,8 +14,9 @@ type PropsPokemonJson = {
 }
 
 export const App = () => {
-    const [change, setChange] = useState(65)
+    const [change, setChange] = useState(987)
     const [load, setLoad] = useState(true)
+    const [linkBroke, setLinkBroke] = useState(false)
 
     const [hp, setHp] = useState<number>(0);
     const [attack, setAttack] = useState<number>(0);
@@ -24,8 +25,6 @@ export const App = () => {
     const [specialDefense, setSpecialDefense] = useState<number>(0);
     const [speed, setSpeed] = useState<number>(0);
 
-
-    const [inputV, setInputV] = useState(0)
     const [background, setBackground] = useState<string>('#151385')
 
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
@@ -33,8 +32,10 @@ export const App = () => {
     const [type, setType] = useState('')
 
     const handleclicknext = (): void => {
+
         if (change < 1008) {
             setChange(change + 1)
+
         } else {
             setChange(1)
         }
@@ -42,31 +43,19 @@ export const App = () => {
     }
 
     const handleclickprev = (): void => {
+
         if (change > 1) {
             setChange(change - 1)
+
         } else {
             setChange(1008)
         }
     }
 
-    const ChangeInput = (): void => {
-        setChange(inputV)
-    }
-
-    const changeByClick = (event: any) => {
-        if (event.keyCode == 39) {
-            handleclicknext()
-        } else if (event.keyCode == 37) {
-            handleclickprev()
-        }
-    }
-
-
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
             .then((response) => {
                 setLoad(false)
-
                 return response.json();
             })
             .then((json) => {
@@ -89,35 +78,40 @@ export const App = () => {
 
     }, [change, type])
 
-
-
     useEffect(() => {
-        window.addEventListener('keyup', changeByClick);
+        if (!load) {
+            setTimeout(() => {
+                setLinkBroke(true)
+            }, 5000);
+        }else{
+            setLinkBroke(false)
+        }
+    }, [load])
 
-        // Remova o listener quando o componente for desmontado
-        return () => {
-            window.removeEventListener('keyup', changeByClick);
-        };
-    }, []);
-
+    const ChangeInput = (pokemonId: number): void => {
+        /* setChange(pokemonId)*/
+    }
 
 
     return (
-        <div onKeyUp={changeByClick}>
-            <G.GeneralContainer background={background} >
-                {load &&
-                    <G.CentralContainer>
-                        <Header input={inputV} />
+        <div >
+            <G.GeneralContainer background={background} load={load}>
 
-                        <Body
-                            json={pokemonJson}
-                            ability={ability}
-                            functionNext={handleclicknext}
-                            functionPrev={handleclickprev}
-                            elemento={type}
-                            imgId={change}
-                        />
+                <G.CentralContainer>
+                    {load &&
+                        <Header inputFunction={ChangeInput} />
+                    }
+                    <Body
+                        json={pokemonJson}
+                        ability={ability}
+                        functionNext={handleclicknext}
+                        functionPrev={handleclickprev}
+                        elemento={type}
+                        imgId={change}
+                        load={load}
+                    />
 
+                    {load &&
                         <Footer
                             hp={hp}
                             attack={attack}
@@ -127,11 +121,19 @@ export const App = () => {
                             speed={speed}
 
                         />
-                    </G.CentralContainer>
-                }
+                    }
+                </G.CentralContainer>
 
-                {!load  &&
-                    <G.Loading src={pokeball} alt='LOADING...'/>
+
+                {!load &&                
+                
+                    <G.ContainerError>
+                        <G.Loading src={pokeball} alt='LOADING...' />
+                        {linkBroke &&
+                            <G.LinkBroken>Em manutenção <br/> pule o pokemon</G.LinkBroken>
+                        }
+                    </G.ContainerError>
+                    
                 }
             </G.GeneralContainer>
         </div>

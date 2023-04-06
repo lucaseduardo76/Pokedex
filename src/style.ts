@@ -10,9 +10,9 @@ const loading = keyframes`
     }
 `
 
-
 type PropsGeneral = {
     background: string
+    load: boolean
 }
 
 export const GeneralContainer = styled.div<PropsGeneral>`
@@ -23,6 +23,7 @@ export const GeneralContainer = styled.div<PropsGeneral>`
     justify-content: center;
     align-items: center;
     transition: all .3s;
+    flex-direction: ${PropsGeneral => PropsGeneral.load ? `row` : `column`};
 
     @media(max-width: 600px){
         width: 100vw;
@@ -45,9 +46,24 @@ export const CentralContainer = styled.div`
         width: 100%;   
     }
 `
+export const ContainerError = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 130px;
+    justify-content: space-between;
+    position: absolute;
+        
+`
+
+
 export const Loading = styled.img`
     height: 60px;       
     animation: ${loading} .5s linear infinite;
+`
 
-
+export const LinkBroken = styled.span`
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
 `

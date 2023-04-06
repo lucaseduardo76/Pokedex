@@ -16,6 +16,7 @@ type PropsMain = {
     functionPrev: () => void,
     elemento: string,
     imgId: number
+    load: boolean
 
 }
 
@@ -48,11 +49,13 @@ export const Body = (data: PropsMain) => {
 
     return (
         <B.BodyContainer>
+            {data.load &&
 
-            <B.Number>
-                <B.SpanNumber>#{convertNumber(data.json.id)}</B.SpanNumber>
-            </B.Number>
+                <B.Number>
+                    <B.SpanNumber>#{convertNumber(data.json.id)}</B.SpanNumber>
+                </B.Number>
 
+            }
             <B.ArrowContainer>
                 <B.BoxArrow onClick={data.functionPrev}>
                     <B.LeftArrow src={arrow} alt="LEFT ARROW" />
@@ -65,45 +68,53 @@ export const Body = (data: PropsMain) => {
 
 
 
-            <B.PokeInfo>
+            {data.load &&
 
-                <B.TitleBox>
-                    <div>
-                        <B.ElementImg src={imgElement} alt='Elemento' />
-                    </div>
+                <>
 
-                    <div>
-                        <B.ElementName>{pokemonElemento}</B.ElementName>
-                        <B.PokemonName>{pokemonNome}</B.PokemonName>
-                    </div>
-                </B.TitleBox>
+                    <B.PokeInfo>
 
-                <B.ContainerInfo>
-                    <B.UlFeature>
+                        <B.TitleBox>
+                            <div>
+                                <B.ElementImg src={imgElement} alt='Elemento' />
+                            </div>
 
-                        <B.LiFeature>
-                            <span>Height</span>
-                            <span>{data.json.height / 10} M</span>
-                        </B.LiFeature>
+                            <div>
+                                <B.ElementName>{pokemonElemento}</B.ElementName>
+                                <B.PokemonName>{pokemonNome}</B.PokemonName>
+                            </div>
+                        </B.TitleBox>
 
-                        <B.LiFeature>
-                            <span>Weight</span>
-                            <span>{data.json.weight / 10} kg</span>
-                        </B.LiFeature>
+                        <B.ContainerInfo>
+                            <B.UlFeature>
 
-                        <B.LiFeature>
-                            <span>abilities</span>
-                            <span>{data.ability}</span>
-                        </B.LiFeature>
+                                <B.LiFeature>
+                                    <span>Height</span>
+                                    <span>{data.json.height / 10} M</span>
+                                </B.LiFeature>
 
-                    </B.UlFeature>
-                </B.ContainerInfo>
+                                <B.LiFeature>
+                                    <span>Weight</span>
+                                    <span>{data.json.weight / 10} kg</span>
+                                </B.LiFeature>
 
-            </B.PokeInfo>
+                                <B.LiFeature>
+                                    <span>abilities</span>
+                                    <span>{data.ability}</span>
+                                </B.LiFeature>
 
-            <B.BoxImgPokemon>
-                <B.ImgPokemon src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.imgId)}.png`} alt="" />
-            </B.BoxImgPokemon>
+                            </B.UlFeature>
+                        </B.ContainerInfo>
+
+                    </B.PokeInfo>
+
+                    <B.BoxImgPokemon>
+                        <B.ImgPokemon src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.imgId)}.png`} alt="" />
+                    </B.BoxImgPokemon>
+                </>
+            }
+
         </B.BodyContainer>
+
     )
 }

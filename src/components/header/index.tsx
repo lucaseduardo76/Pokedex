@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import pokeball from './../../assets/icons/pokeball.webp'
 
 type Props = {
-    input: number
+    inputFunction: (number: number) => void;
 }
 
 export const Header = (data: Props) => {
@@ -16,11 +16,9 @@ export const Header = (data: Props) => {
                   
         setinputValue(event.target.value)
         
+        
     }
 
-    useEffect(()=>{
-        console.log(inputValue)
-    }, [inputValue])
     return (
         <H.HeaderContainer>
             <H.SearchContainer>
