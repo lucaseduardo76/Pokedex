@@ -50,7 +50,7 @@ export const ContainerError = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
-    height: 130px;
+    height: 170px;
     justify-content: space-between;
     position: absolute;
         

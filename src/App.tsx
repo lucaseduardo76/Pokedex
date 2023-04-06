@@ -14,7 +14,7 @@ type PropsPokemonJson = {
 }
 
 export const App = () => {
-    const [change, setChange] = useState(987)
+    const [change, setChange] = useState(1)
     const [load, setLoad] = useState(true)
     const [linkBroke, setLinkBroke] = useState(false)
 
