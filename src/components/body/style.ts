@@ -106,16 +106,18 @@ export const BoxArrow = styled.div`
     }
 `
 
-export const LeftArrow = styled.img`
-    height: 50px;
-    margin-right: -15px;
+type PropsArrow = { 
+    degree: string
+}
+export const ArrowL = styled.div<PropsArrow>`
+    position: absolute;
+    padding: 20px;
+    box-shadow: 5px -5px 0 1px #fff inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate(${PropsArrow => PropsArrow.degree}deg);
 `
 
-export const RightArrow = styled.img`
-    height: 50px;
-    margin-right: 15px;
-    transform: rotate(180deg);
-`
 
 export const PokeInfo = styled.div`
     display: flex;

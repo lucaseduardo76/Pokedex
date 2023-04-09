@@ -130,7 +130,7 @@ export const App = () => {
                     <G.ContainerError>
                         <G.Loading src={pokeball} alt='LOADING...' />
                         {linkBroke &&
-                            <G.LinkBroken>Em manutenção <br/> pule o pokemon</G.LinkBroken>
+                            <G.LinkBroken>API em manutenção <br/> pule o pokemon</G.LinkBroken>
                         }
                     </G.ContainerError>
                     

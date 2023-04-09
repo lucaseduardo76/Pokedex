@@ -1,5 +1,3 @@
-
-import arrow from './../../assets/icons/arrow.svg'
 import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
 import * as B from './style'
 import { useState, useEffect } from 'react'
@@ -58,11 +56,11 @@ export const Body = (data: PropsMain) => {
             }
             <B.ArrowContainer>
                 <B.BoxArrow onClick={data.functionPrev}>
-                    <B.LeftArrow src={arrow} alt="LEFT ARROW" />
+                    <B.ArrowL degree={'45'}></B.ArrowL>
                 </B.BoxArrow>
 
                 <B.BoxArrow onClick={data.functionNext}>
-                    <B.RightArrow src={arrow} alt="RIGHT ARROW" />
+                    <B.ArrowL degree={'225'}></B.ArrowL>
                 </B.BoxArrow>
             </B.ArrowContainer>
 
