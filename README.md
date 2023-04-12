@@ -3,8 +3,7 @@
 
 ## Como começar
 - Para rodar este projeto localmente, você precisa ter o node instalado. Após clonar o repositório, execute o seguinte comando na raiz do projeto:
- 
- npm install
+- npm install
 
 ## Em seguida, execute o comando abaixo para rodar o servidor de desenvolvimento:
 - npm run dev 
