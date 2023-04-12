@@ -24,5 +24,5 @@
 - https://pokeapi.co/
 
 # links
-- Deploy: https://github.com/lucaseduardo76/Pokedex
+- Deploy: https://pokemondex-reactt.netlify.app/
 - Portfolio: https://lucased.netlify.app/
