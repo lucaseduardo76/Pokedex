@@ -43,7 +43,6 @@ export const App = () => {
     }
 
     const handleclickprev = (): void => {
-
         if (change > 1) {
             setChange(change - 1)
 
@@ -75,7 +74,6 @@ export const App = () => {
 
     useEffect(() => {
         setBackground(SwitchBackgroundColor(type))
-
     }, [change, type])
 
     useEffect(() => {
@@ -89,7 +87,16 @@ export const App = () => {
     }, [load])
 
     const ChangeInput = (pokemonId: number): void => {
-        /* setChange(pokemonId)*/
+        if(!Number.isNaN(pokemonId)){
+            if(pokemonId > 1008){
+                setChange(1008)
+            }else if(pokemonId < 1){
+                setChange(1)
+            }else{
+                setChange(pokemonId)
+            }
+        }
+        console.log(pokemonId)
     }
 
 
@@ -98,9 +105,9 @@ export const App = () => {
             <G.GeneralContainer background={background} load={load}>
 
                 <G.CentralContainer>
-                    {load &&
+                   {!load || load && 
                         <Header inputFunction={ChangeInput} />
-                    }
+                   }
                     <Body
                         json={pokemonJson}
                         ability={ability}

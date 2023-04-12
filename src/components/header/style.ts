@@ -21,7 +21,8 @@ export const SearchContainer = styled.div`
     width: 400px;
     padding: 5px;
     border-radius: 10px;
-    
+    z-index: 999;
+
     @media(max-width: 585px){
         width: 300px;
     }
@@ -70,7 +71,6 @@ export const ImgIcons = styled.img`
     &:hover{
         background-color: #ffffff57;
         border-radius: 30px;
-        padding: 5px;
     }
 `
 export const PokemonList = styled.img`
@@ -79,5 +79,6 @@ export const PokemonList = styled.img`
     
 `
 export const Link =styled.a`
-    z-index: 99;
+   
+z-index: 999;
 `

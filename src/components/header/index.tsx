@@ -12,11 +12,20 @@ export const Header = (data: Props) => {
     const [inputValue, setinputValue] = useState('')
 
 
-    const handleInputFunction = (event: React.ChangeEvent<HTMLInputElement>) =>{
-                  
-        setinputValue(event.target.value)
+    const handleInputFunction = (event: React.ChangeEvent<HTMLInputElement>):void =>{
         
+        setinputValue(event.target.value)     
         
+    }
+
+    const handleSendInfoToApp = ():void =>{
+        const numberInput: number = parseInt(inputValue)
+        data.inputFunction(numberInput)
+    }
+
+    const handleRandomNumberToApp = ():void=>{
+        const randomNumber = Math.random() * (1008 - 1) + 1;
+        data.inputFunction(Math.trunc(randomNumber))
     }
 
     return (
@@ -25,13 +34,13 @@ export const Header = (data: Props) => {
 
                 <H.InputContainer>
                     <label>
-                        <H.Input type="number" placeholder="Search Here" maxLength={30} max={1008} value={inputValue} onChange={handleInputFunction}/>
+                        <H.Input type="number" placeholder="Search Here" maxLength={30} max={1008} onChange={handleInputFunction}/>
                     </label>
                 </H.InputContainer>
 
                 <H.Icons>
-                    <H.ImgIcons src={search} alt="" />
-                    <H.ImgIcons src={random} alt="" />
+                    <H.ImgIcons src={search} alt="" onClick={handleSendInfoToApp}/>
+                    <H.ImgIcons src={random} alt="" onClick={handleRandomNumberToApp}/>
                 </H.Icons>
 
             </H.SearchContainer>
