@@ -9,14 +9,15 @@ import pokeball from './assets/icons/pokeball.webp'
 
 type PropsPokemonJson = {
     name: string
-    weight: string
-    height: string
+    weight: number
+    height: number
+    id: number
 }
 
 export const App = () => {
-    const [change, setChange] = useState(1)
-    const [load, setLoad] = useState(true)
-    const [linkBroke, setLinkBroke] = useState(false)
+    const [change, setChange] = useState<number>(1)
+    const [load, setLoad] = useState<boolean>(true)
+    const [linkBroke, setLinkBroke] = useState<boolean>(false)
 
     const [hp, setHp] = useState<number>(0);
     const [attack, setAttack] = useState<number>(0);
@@ -27,9 +28,15 @@ export const App = () => {
 
     const [background, setBackground] = useState<string>('#151385')
 
-    const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson | any>({})
-    const [ability, setAbility] = useState('')
-    const [type, setType] = useState('')
+    const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson>({
+        name: '',
+        weight: 0,
+        height: 0,
+        id: 0        
+    })
+
+    const [ability, setAbility] = useState<string>('')
+    const [type, setType] = useState<string>('')
 
     const handleclicknext = (): void => {
 
@@ -49,6 +56,7 @@ export const App = () => {
         } else {
             setChange(1008)
         }
+
     }
 
     useEffect(() => {
@@ -77,26 +85,29 @@ export const App = () => {
     }, [change, type])
 
     useEffect(() => {
+
         if (!load) {
             setTimeout(() => {
                 setLinkBroke(true)
             }, 5000);
-        }else{
+        } else {
             setLinkBroke(false)
         }
+
     }, [load])
 
     const ChangeInput = (pokemonId: number): void => {
-        if(!Number.isNaN(pokemonId)){
-            if(pokemonId > 1008){
+        if (!Number.isNaN(pokemonId)) {
+
+            if (pokemonId > 1008) {
                 setChange(1008)
-            }else if(pokemonId < 1){
+            } else if (pokemonId < 1) {
                 setChange(1)
-            }else{
+            } else {
                 setChange(pokemonId)
             }
+
         }
-        console.log(pokemonId)
     }
 
 
@@ -105,9 +116,9 @@ export const App = () => {
             <G.GeneralContainer background={background} load={load}>
 
                 <G.CentralContainer>
-                   {!load || load && 
+                    {load &&
                         <Header inputFunction={ChangeInput} />
-                   }
+                    }
                     <Body
                         json={pokemonJson}
                         ability={ability}
@@ -132,15 +143,15 @@ export const App = () => {
                 </G.CentralContainer>
 
 
-                {!load &&                
-                
+                {!load &&
+
                     <G.ContainerError>
                         <G.Loading src={pokeball} alt='LOADING...' />
                         {linkBroke &&
-                            <G.LinkBroken>API em manutenção <br/> pule o pokemon</G.LinkBroken>
+                            <G.LinkBroken>API em manutenção <br /> pule o pokemon</G.LinkBroken>
                         }
                     </G.ContainerError>
-                    
+
                 }
             </G.GeneralContainer>
         </div>
