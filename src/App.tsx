@@ -5,6 +5,7 @@ import { Footer } from './components/footer'
 import { SwitchBackgroundColor } from './interface/colorSelector/switchColor'
 import * as G from './style'
 import pokeball from './assets/icons/pokeball.webp'
+import axios from 'axios';
 
 
 type PropsPokemonJson = {
@@ -12,6 +13,7 @@ type PropsPokemonJson = {
     weight: number
     height: number
     id: number
+    data?: any
 }
 
 export const App = () => {
@@ -32,7 +34,7 @@ export const App = () => {
         name: '',
         weight: 0,
         height: 0,
-        id: 0        
+        id: 0
     })
 
     const [ability, setAbility] = useState<string>('')
@@ -60,24 +62,30 @@ export const App = () => {
     }
 
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${change}/`)
-            .then((response) => {
-                setLoad(false)
-                return response.json();
-            })
-            .then((json) => {
+             
+        axios.get<PropsPokemonJson>(`https://pokeapi.co/api/v2/pokemon/${change}/`)
+            .then((response: PropsPokemonJson) => {
+                const json = response.data;
+                
                 setPokemonJson(json)
                 setType(json.types[0].type.name)
+
                 setHp(json.stats[0].base_stat)
                 setAttack(json.stats[1].base_stat)
                 setDefense(json.stats[2].base_stat)
                 setSpecialAttack(json.stats[3].base_stat)
                 setSpecialDefense(json.stats[4].base_stat)
                 setSpeed(json.stats[5].base_stat)
+
                 setPokemonJson(json)
                 setAbility(json.abilities[0].ability.name)
+
                 setLoad(true)
             })
+            .catch((error: PropsPokemonJson) => {                
+                setLoad(false)
+                console.log(error);
+            });
     }, [change])
 
     useEffect(() => {
@@ -137,7 +145,6 @@ export const App = () => {
                             specialAttack={specialAttack}
                             specialDefense={specialDefense}
                             speed={speed}
-
                         />
                     }
                 </G.CentralContainer>

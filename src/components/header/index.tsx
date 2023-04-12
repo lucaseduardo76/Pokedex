@@ -1,8 +1,9 @@
 import * as H from './style'
 import search from './../../assets/icons/search.svg'
 import random from './../../assets/icons/random.svg'
-import { useEffect, useState } from 'react'
 import pokeball from './../../assets/icons/pokeball.webp'
+
+import {useState } from 'react'
 
 type Props = {
     inputFunction: (number: number) => void;
