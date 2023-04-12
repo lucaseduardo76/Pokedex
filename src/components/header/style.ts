@@ -28,7 +28,7 @@ export const SearchContainer = styled.div`
     }
 
     @media(max-width: 430px){
-        width: 240px;  
+        width: 270px;  
     }
 `
 export const InputContainer = styled.div`
@@ -45,7 +45,7 @@ export const Input = styled.input`
     background-color: rgba(0, 0, 0, 0);
 
     &::placeholder{
-        color: aliceblue;
+        color: rgba(255, 255, 255, 0.5);
     }
 
     &:focus{
@@ -61,6 +61,11 @@ export const Icons = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 3px;
+
+    @media(max-width: 430px){
+        max-width: 80px;
+        flex: 2;
+    }
 `
 
 export const ImgIcons = styled.img`

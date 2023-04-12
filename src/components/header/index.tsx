@@ -34,7 +34,7 @@ export const Header = (data: Props) => {
 
                 <H.InputContainer>
                     <label>
-                        <H.Input type="number" placeholder="Search Here" maxLength={30} max={1008} onChange={handleInputFunction}/>
+                        <H.Input type="number" placeholder="Ex..: 385" maxLength={30} max={1008} onChange={handleInputFunction}/>
                     </label>
                 </H.InputContainer>
 
