@@ -22,11 +22,13 @@ export const Header = (data: Props) => {
     const handleSendInfoToApp = ():void =>{
         const numberInput: number = parseInt(inputValue)
         data.inputFunction(numberInput)
+        setinputValue('')
     }
 
     const handleRandomNumberToApp = ():void=>{
         const randomNumber = Math.random() * (1008 - 1) + 1;
         data.inputFunction(Math.trunc(randomNumber))
+        setinputValue('')
     }
 
     return (
