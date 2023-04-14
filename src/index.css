@@ -9,3 +9,7 @@ body{
   justify-content: center;
   background-color: #222;
 }
+.list{
+  color: aliceblue;
+  font-size: 40px;
+}

@@ -1,7 +1,5 @@
 import * as S from './style'
 
-
-
 type PropsFooter = {
     hp: number,
     attack: number,

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Header } from './components/header'
-import { Body } from './components/body'
-import { Footer } from './components/footer'
+import { Header } from './components/home/header'
+import { Body } from './components/home/body'
+import { Footer } from './components/home/footer'
 import { SwitchBackgroundColor } from './interface/colorSelector/switchColor'
 import * as G from './style'
 import pokeball from './assets/icons/pokeball.webp'
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom'
 
 
 type PropsPokemonJson = {
@@ -62,11 +63,11 @@ export const App = () => {
     }
 
     useEffect(() => {
-             
+
         axios.get<PropsPokemonJson>(`https://pokeapi.co/api/v2/pokemon/${change}/`)
             .then((response: PropsPokemonJson) => {
                 const json = response.data;
-                
+
                 setPokemonJson(json)
                 setType(json.types[0].type.name)
 
@@ -82,7 +83,7 @@ export const App = () => {
 
                 setLoad(true)
             })
-            .catch((error: PropsPokemonJson) => {                
+            .catch((error: PropsPokemonJson) => {
                 setLoad(false)
                 console.log(error);
             });
@@ -118,49 +119,55 @@ export const App = () => {
         }
     }
 
-
     return (
         <div >
-            <G.GeneralContainer background={background} load={load}>
+            <Routes>
+                <Route path='/' element={
+                    <G.GeneralContainer background={background} load={load}>
 
-                <G.CentralContainer>
-                    {load &&
-                        <Header inputFunction={ChangeInput} />
-                    }
-                    <Body
-                        json={pokemonJson}
-                        ability={ability}
-                        functionNext={handleclicknext}
-                        functionPrev={handleclickprev}
-                        elemento={type}
-                        imgId={change}
-                        load={load}
-                    />
+                        <G.CentralContainer>
+                            {load &&
+                                <Header inputFunction={ChangeInput} />
+                            }
+                            <Body
+                                json={pokemonJson}
+                                ability={ability}
+                                functionNext={handleclicknext}
+                                functionPrev={handleclickprev}
+                                elemento={type}
+                                imgId={change}
+                                load={load}
+                            />
 
-                    {load &&
-                        <Footer
-                            hp={hp}
-                            attack={attack}
-                            defense={defense}
-                            specialAttack={specialAttack}
-                            specialDefense={specialDefense}
-                            speed={speed}
-                        />
-                    }
-                </G.CentralContainer>
+                            {load &&
+                                <Footer
+                                    hp={hp}
+                                    attack={attack}
+                                    defense={defense}
+                                    specialAttack={specialAttack}
+                                    specialDefense={specialDefense}
+                                    speed={speed}
+                                />
+                            }
+                        </G.CentralContainer>
 
 
-                {!load &&
+                        {!load &&
 
-                    <G.ContainerError>
-                        <G.Loading src={pokeball} alt='LOADING...' />
-                        {linkBroke &&
-                            <G.LinkBroken>API em manutenção <br /> pule o pokemon</G.LinkBroken>
+                            <G.ContainerError>
+                                <G.Loading src={pokeball} alt='LOADING...' />
+                                {linkBroke &&
+                                    <G.LinkBroken>API em manutenção <br /> pule o pokemon</G.LinkBroken>
+                                }
+                            </G.ContainerError>
+
                         }
-                    </G.ContainerError>
+                    </G.GeneralContainer>
+                } />
 
-                }
-            </G.GeneralContainer>
+                <Route path='/list' element={<div className='list'> LISTA DE POKEMONS EM CONSTRUÇÃO...</div>} />
+
+            </Routes>
         </div>
     )
 }

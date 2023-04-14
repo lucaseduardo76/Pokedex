@@ -6,7 +6,8 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     height: 70px;
     padding: 0 40px;
-
+    
+    z-index: 999;
     @media(max-width: 430px){        
         padding: 0 10px; 
     }
@@ -83,7 +84,6 @@ export const PokemonList = styled.img`
     cursor: pointer;
     
 `
-export const Link =styled.a`
-   
-z-index: 999;
+export const Ball = styled.div`
+    z-index: 9699;
 `

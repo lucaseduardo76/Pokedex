@@ -58,7 +58,6 @@ export const ArrowContainer = styled.div`
     align-items: flex-end;
     max-width: 1200px;
     z-index: 100;
-
     
     @media(max-width: 1000px){        
         width: 750px;
@@ -152,7 +151,6 @@ export const PokemonName = styled.div`
 `
 export const ContainerInfo = styled.div`
     width: 370px; 
-    z-index: 999;
 
     @media(max-width: 870px){
         width: 450px;

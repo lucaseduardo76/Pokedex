@@ -1,4 +1,4 @@
-import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
+import { SwitchElementImg } from '../../../interface/imgElementSelector/switchImg'
 import * as B from './style'
 import { useState, useEffect } from 'react'
 
