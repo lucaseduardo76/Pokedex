@@ -8,6 +8,7 @@ import { useState } from 'react'
 
 type Props = {
     inputFunction: (number: number) => void;
+    link: string
 }
 
 export const Header = (data: Props) => {
@@ -56,7 +57,7 @@ export const Header = (data: Props) => {
             </H.SearchContainer>
 
             <H.Ball>
-                <Link to='/list'>
+                <Link to={data.link}>
                     <H.PokemonList src={pokeball} alt="" />
                 </Link>
             </H.Ball>

@@ -132,7 +132,8 @@ export const App = () => {
 
                         <G.CentralContainer>
                             {load &&
-                                <Header inputFunction={ChangeInput} />
+                                <Header inputFunction={ChangeInput} link={'list'}/>
+                                
                             }
                             <Body
                                 json={pokemonJson}

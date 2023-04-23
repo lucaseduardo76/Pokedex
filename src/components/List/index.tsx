@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
 import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor'
@@ -92,17 +92,45 @@ const Card = (data: PropsTwo) => {
 }
 
 export const List = () => {
-    const [index, setIndex] = useState<number>(1);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [isBottom, setIsBottom] = useState(true);
+    const [list, setList] = useState<number>(20)
 
     let Array = []
 
-    for (let n = 1; n <= 100; n++) {
+    for (let n = 1; n <= list; n++) {
         Array.push(n)
     }
 
+    const a = () =>{
+
+    }
+
+    useEffect(() => {
+        const handleScroll = () => {
+          const { body } = document;
+          const html = document.documentElement;
+          const totalHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+          const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    
+          if (scrollTop + window.innerHeight >= totalHeight) {
+            setIsBottom(true);
+            console.log('true')
+          } else {
+            setIsBottom(false);
+          }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    }, [])
+
     return (
         <>
-            <C.Container>
+            <Header
+                inputFunction={a} 
+                link={'/'}
+            />
+            <C.Container ref={scrollRef}>
 
 
                 {
