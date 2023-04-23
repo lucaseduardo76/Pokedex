@@ -3,6 +3,7 @@ import { Header } from './components/home/header'
 import { Body } from './components/home/body'
 import { Footer } from './components/home/footer'
 import { SwitchBackgroundColor } from './interface/colorSelector/switchColor'
+import { List } from './components/List'
 import * as G from './style'
 import pokeball from './assets/icons/pokeball.webp'
 import axios from 'axios';
@@ -40,6 +41,7 @@ export const App = () => {
 
     const [ability, setAbility] = useState<string>('')
     const [type, setType] = useState<string>('')
+    const [secondType, setSecondType] = useState<string>('')
 
     const handleclicknext = (): void => {
 
@@ -70,7 +72,10 @@ export const App = () => {
 
                 setPokemonJson(json)
                 setType(json.types[0].type.name)
-
+                setSecondType(json.types[1]?.type.name)
+               
+                
+                
                 setHp(json.stats[0].base_stat)
                 setAttack(json.stats[1].base_stat)
                 setDefense(json.stats[2].base_stat)
@@ -165,7 +170,7 @@ export const App = () => {
                     </G.GeneralContainer>
                 } />
 
-                <Route path='/list' element={<div className='list'> LISTA DE POKEMONS EM CONSTRUÇÃO...</div>} />
+                <Route path='/list' element={<List/>} />
 
             </Routes>
         </div>
