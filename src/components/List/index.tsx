@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import './style.css'
 import axios from 'axios'
 import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
+import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor'
+import * as C from './style'
+import { Header } from '../home/header'
 
 type Props = {
     cardIndex: number
@@ -60,68 +62,62 @@ const Card = (data: PropsTwo) => {
     }, [data.cardIndex])
 
     return (
-        <div className="card">
-            <div className="photo">
-                <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
+        <C.Card Background={SwitchBackgroundColor(type)}>
+            <div>
+                <img style={{ height: '150px' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
             </div>
 
-            <div className="infos">
-                <div className='name'>{WordFirstLetterUpperCase(name)}</div>
-                <div className='index'>#{data.cardIndex}</div>
-            </div>
+            <C.InfoContainer>
+                <C.Name>{WordFirstLetterUpperCase(name)}</C.Name>
+                <C.Index>#{convertNumber(data.cardIndex)}</C.Index>
+            </C.InfoContainer>
 
-            <div className="elements">
+            <C.Elements>
 
-                <div className="boxElement">
-                    <img src={SwitchElementImg(type)} alt="" />
+                <C.BoxElements>
+                    <C.ElementsImg src={SwitchElementImg(type)} alt="" />
                     <span>{WordFirstLetterUpperCase(type)}</span>
-                </div>
+                </C.BoxElements>
 
                 {secType &&
-                    <div className="boxElement">
-                        <img src={SwitchElementImg(secType)} alt="" />
+                    <C.BoxElements>
+                        <C.ElementsImg src={SwitchElementImg(secType)} alt="" />
                         <span>{WordFirstLetterUpperCase(secType)}</span>
-                    </div>
+                    </C.BoxElements>
                 }
 
-            </div>
-        </div>
+            </C.Elements>
+        </C.Card>
     )
 }
 
 export const List = () => {
     const [index, setIndex] = useState<number>(1);
 
-    let Array = [1]
+    let Array = []
 
-    for(let n = 2; n <= 50; n++){
+    for (let n = 1; n <= 100; n++) {
         Array.push(n)
     }
-    
+
     return (
-        <div className="container">
-            <div>
+        <>
+            <C.Container>
 
-            {
-                Array.map((item, key)=>(
-                    <Card
-                        cardIndex={item}
-                        key={key}
-                    />
-                ))
-            }
-                
 
-            </div>
-        </div>
+                {
+                    Array.map((item, key) => (
+                        <Card
+                            cardIndex={item}
+                            key={key}
+                        />
+                    ))
+                }
+
+
+
+            </C.Container>
+        </>
     )
 }
 
-/*
-cardIndex={cardIndex}
-                    name={name}
-                    type={type}
-                    secType={secType}
-                    UpperCaseLetter={WordFirstLetterUpperCase}
-                    convertNumber={convertNumber}
-                    */
