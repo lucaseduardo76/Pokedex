@@ -5,15 +5,6 @@ import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor
 import * as C from './style'
 import { Header } from '../home/header'
 
-type Props = {
-    cardIndex: number
-    name: string
-    type: string
-    secType?: string
-    UpperCaseLetter: (data: string) => string
-    convertNumber: (data: number) => number | string
-
-}
 
 type PropsTwo = {
     cardIndex: number
@@ -91,10 +82,16 @@ const Card = (data: PropsTwo) => {
     )
 }
 
-export const List = () => {
-    const scrollRef = useRef<HTMLDivElement>(null);
+
+
+type Props = {
+    innerRef: any
+}
+
+export const List = (data: Props) => {
     const [isBottom, setIsBottom] = useState(true);
-    const [list, setList] = useState<number>(20)
+    const [list, setList] = useState<number>(30)
+    const [prev, setPrev] = useState<number>(0)
 
     let Array = []
 
@@ -106,22 +103,29 @@ export const List = () => {
 
     }
 
+    useEffect(()=>{
+        setPrev(list)
+    }, [list])
+
     useEffect(() => {
-        const handleScroll = () => {
-          const { body } = document;
-          const html = document.documentElement;
-          const totalHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-          const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        const handleScroll = ()=>{
+            
+                const screenHeight = data.innerRef.current.scrollHeight;
+                if(screenHeight != null){
+                    console.log(window.scrollY + ' de ' + screenHeight)
     
-          if (scrollTop + window.innerHeight >= totalHeight) {
-            setIsBottom(true);
-            console.log('true')
-          } else {
-            setIsBottom(false);
-          }
-        };
-    
+                    if(screenHeight <= window.scrollY + 1000){
+                        const test = list
+                        setList(list + 800)
+                    }
+                }
+            
+            console.log("esse é o list = " + list)
+        }
+
         window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
     return (
@@ -130,7 +134,7 @@ export const List = () => {
                 inputFunction={a} 
                 link={'/'}
             />
-            <C.Container ref={scrollRef}>
+            <C.Container >
 
 
                 {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Header } from './components/home/header'
 import { Body } from './components/home/body'
 import { Footer } from './components/home/footer'
@@ -19,6 +19,8 @@ type PropsPokemonJson = {
 }
 
 export const App = () => {
+    const scrollRef = useRef<HTMLDivElement | any>();
+
     const [change, setChange] = useState<number>(1)
     const [load, setLoad] = useState<boolean>(true)
     const [linkBroke, setLinkBroke] = useState<boolean>(false)
@@ -125,7 +127,7 @@ export const App = () => {
     }
 
     return (
-        <div >
+        <div ref={scrollRef}>
             <Routes>
                 <Route path='/' element={
                     <G.GeneralContainer background={background} load={load}>
@@ -171,7 +173,7 @@ export const App = () => {
                     </G.GeneralContainer>
                 } />
 
-                <Route path='/list' element={<List/>} />
+                <Route path='/list' element={<List innerRef={scrollRef}/>} />
 
             </Routes>
         </div>
