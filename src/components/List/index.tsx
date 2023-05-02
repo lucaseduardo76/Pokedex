@@ -116,7 +116,7 @@ export const List = (data: Props) => {
     
                     if(screenHeight <= window.scrollY + 1000){
                         const test = list
-                        setList(list + 800)
+                        setList(list + 100)
                     }
                 }
             
