@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
 import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor'
@@ -84,61 +84,33 @@ const Card = (data: PropsTwo) => {
 
 
 
-type Props = {
-    innerRef: any
-}
 
-export const List = (data: Props) => {
-    const [isBottom, setIsBottom] = useState(true);
+export const List = () => {
     const [list, setList] = useState<number>(30)
-    const [prev, setPrev] = useState<number>(0)
 
-    let Array = []
+    let cardsList = []
 
     for (let n = 1; n <= list; n++) {
-        Array.push(n)
+        cardsList.push(n)
     }
 
-    const a = () =>{
-
+    const handleScroll = () => {
+        setList(list + 20)
     }
-
-    useEffect(()=>{
-        setPrev(list)
-    }, [list])
-
-    useEffect(() => {
-        const handleScroll = ()=>{
-            
-                const screenHeight = data.innerRef.current.scrollHeight;
-                if(screenHeight != null){
-                    console.log(window.scrollY + ' de ' + screenHeight)
-    
-                    if(screenHeight <= window.scrollY + 1000){
-                        const test = list
-                        setList(list + 100)
-                    }
-                }
-            
-            console.log("esse é o list = " + list)
-        }
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
 
     return (
-        <>
+        <C.GeneralContainer>
+
             <Header
-                inputFunction={a} 
+                inputFunction={() => { }}
                 link={'/'}
             />
+
             <C.Container >
 
 
                 {
-                    Array.map((item, key) => (
+                    cardsList.map((item, key) => (
                         <Card
                             cardIndex={item}
                             key={key}
@@ -146,10 +118,16 @@ export const List = (data: Props) => {
                     ))
                 }
 
-
+                
 
             </C.Container>
-        </>
+
+            <C.ButtonToAddCards className="button" onClick={handleScroll}>
+                    Ver mais
+            </C.ButtonToAddCards>
+
+
+        </C.GeneralContainer>
     )
-}
+};
 
