@@ -102,3 +102,34 @@ export const ButtonToAddCards = styled.div`
     cursor: pointer;
 
 `
+export const BoxArrow = styled.div`
+    height: 40px;
+    width: 40px;      
+    border-radius: 50px;    
+    background-color: #0050ac;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .5s ease ;
+
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    &:hover{        
+        border-radius: 50px;    
+        background-color:#0050dc;
+    }
+`
+
+export const ArrowL = styled.div`
+    position: absolute;
+    padding: 10px;
+    box-shadow: 5px -5px 0 1px #fff inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate( 135deg);
+`

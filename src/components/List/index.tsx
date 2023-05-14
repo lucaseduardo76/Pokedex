@@ -56,7 +56,7 @@ const Card = (data: PropsTwo) => {
     return (
         <C.Card Background={SwitchBackgroundColor(type)}>
 
-            <C.BackgroundImg src={pokeball} alt=""/>
+            <C.BackgroundImg src={pokeball} alt="" />
 
             <div>
                 <img style={{ height: '150px', zIndex: '99' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
@@ -82,6 +82,8 @@ const Card = (data: PropsTwo) => {
                 }
 
             </C.Elements>
+
+            
         </C.Card>
     )
 }
@@ -101,6 +103,18 @@ export const List = () => {
     const handleScroll = () => {
         setList(list + 25)
     }
+
+    const handleScrollTop = () => {
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior: 'smooth'
+        })
+    }
+
+    useEffect(()=>{
+        
+    }, [ ])
 
     return (
         <C.GeneralContainer>
@@ -123,14 +137,18 @@ export const List = () => {
                     ))
                 }
 
-                
+
 
             </C.Container>
 
             <C.ButtonToAddCards className="button" onClick={handleScroll}>
-                    Ver mais
+                Ver mais
             </C.ButtonToAddCards>
 
+
+            <C.BoxArrow onClick={handleScrollTop}>
+                <C.ArrowL> </C.ArrowL>
+            </C.BoxArrow>
 
         </C.GeneralContainer>
     )
