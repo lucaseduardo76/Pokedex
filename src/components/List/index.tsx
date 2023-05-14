@@ -4,6 +4,7 @@ import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
 import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor'
 import * as C from './style'
 import { Header } from '../home/header'
+import pokeball from './../../assets/icons/whiteBall.jpg'
 
 
 type PropsTwo = {
@@ -54,8 +55,11 @@ const Card = (data: PropsTwo) => {
 
     return (
         <C.Card Background={SwitchBackgroundColor(type)}>
+
+            <C.BackgroundImg src={pokeball} alt=""/>
+
             <div>
-                <img style={{ height: '150px' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
+                <img style={{ height: '150px', zIndex: '99' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
             </div>
 
             <C.InfoContainer>

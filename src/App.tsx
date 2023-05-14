@@ -173,7 +173,7 @@ export const App = () => {
                     </G.GeneralContainer>
                 } />
 
-                <Route path='/list' element={<List innerRef={scrollRef}/>} />
+                <Route path='/list' element={<List/>} />
 
             </Routes>
         </div>

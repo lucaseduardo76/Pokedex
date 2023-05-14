@@ -28,6 +28,14 @@ export const Container = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 `
+export const BackgroundImg = styled.img`
+    position: absolute;
+    height: 180px;
+    margin-top: -75px;
+    margin-left: px;
+    transform: rotate(40deg);
+    z-index: -1;
+`
 
 type PropsCard = {
     Background: string
@@ -41,6 +49,8 @@ export const Card = styled.div<PropsCard>`
     background-color: ${PropsCard => PropsCard.Background};
     border-radius: 10px;
     margin: 20px;
+    z-index: -2;
+    
 `
 
 export const InfoContainer = styled.div`
