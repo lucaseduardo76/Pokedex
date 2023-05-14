@@ -4,7 +4,7 @@ import { SwitchElementImg } from '../../interface/imgElementSelector/switchImg'
 import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor'
 import * as C from './style'
 import { Header } from '../home/header'
-import pokeball from './../../assets/icons/whiteBall.jpg'
+import pokeball from './../../assets/icons/grayBall.jpg'
 
 
 type PropsTwo = {
@@ -90,7 +90,7 @@ const Card = (data: PropsTwo) => {
 
 
 export const List = () => {
-    const [list, setList] = useState<number>(30)
+    const [list, setList] = useState<number>(25)
 
     let cardsList = []
 
@@ -99,13 +99,14 @@ export const List = () => {
     }
 
     const handleScroll = () => {
-        setList(list + 20)
+        setList(list + 25)
     }
 
     return (
         <C.GeneralContainer>
 
             <Header
+                // The fuction of this components will be make in the next uploading
                 inputFunction={() => { }}
                 link={'/'}
             />

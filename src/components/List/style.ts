@@ -30,9 +30,9 @@ export const Container = styled.div`
 `
 export const BackgroundImg = styled.img`
     position: absolute;
-    height: 180px;
+    height: 220px;
     margin-top: -75px;
-    margin-left: px;
+    margin-left: -20px;
     transform: rotate(40deg);
     z-index: -1;
 `
