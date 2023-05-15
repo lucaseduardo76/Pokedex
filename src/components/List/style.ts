@@ -35,7 +35,7 @@ export const BackgroundImg = styled.img`
     margin-top: -75px;
     margin-left: -20px;
     transform: rotate(40deg);
-    z-index: -1;
+    z-index: 1;
 `
 
 type PropsCard = {
@@ -50,7 +50,7 @@ export const Card = styled.div<PropsCard>`
     background-color: ${PropsCard => PropsCard.Background};
     border-radius: 10px;
     margin: 20px;
-    z-index: -2;
+    z-index: -3;
     
 `
 
