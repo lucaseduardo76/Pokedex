@@ -8,7 +8,8 @@ import * as G from './style'
 import pokeball from './assets/icons/pokeball.webp'
 import axios from 'axios';
 import { Routes, Route } from 'react-router-dom'
-
+import { useParams } from 'react-router-dom'
+import { Card } from './components/card/'
 
 type PropsPokemonJson = {
     name: string
@@ -19,11 +20,11 @@ type PropsPokemonJson = {
 }
 
 export const App = () => {
-    const scrollRef = useRef<HTMLDivElement | any>();
+    const params = useParams();
 
-    const [change, setChange] = useState<number>(1)
-    const [load, setLoad] = useState<boolean>(true)
-    const [linkBroke, setLinkBroke] = useState<boolean>(false)
+    const [change, setChange] = useState<number>(1);
+    const [load, setLoad] = useState<boolean>(true);
+    const [linkBroke, setLinkBroke] = useState<boolean>(false);
 
     const [hp, setHp] = useState<number>(0);
     const [attack, setAttack] = useState<number>(0);
@@ -32,29 +33,26 @@ export const App = () => {
     const [specialDefense, setSpecialDefense] = useState<number>(0);
     const [speed, setSpeed] = useState<number>(0);
 
-    const [background, setBackground] = useState<string>('#151385')
+    const [background, setBackground] = useState<string>('#151385');
 
     const [pokemonJson, setPokemonJson] = useState<PropsPokemonJson>({
         name: '',
         weight: 0,
         height: 0,
         id: 0
-    })
+    });
 
-    const [ability, setAbility] = useState<string>('')
-    const [type, setType] = useState<string>('')
-    const [secondType, setSecondType] = useState<string>('')
+    const [ability, setAbility] = useState<string>('');
+    const [type, setType] = useState<string>('');
+    const [secondType, setSecondType] = useState<string>('');
 
     const handleclicknext = (): void => {
-
         if (change < 1008) {
-            setChange(change + 1)
-
+            setChange(change + 1);
         } else {
-            setChange(1)
-        }
-
-    }
+            setChange(1);
+        };
+    };
 
     const handleclickprev = (): void => {
         if (change > 1) {
@@ -75,9 +73,9 @@ export const App = () => {
                 setPokemonJson(json)
                 setType(json.types[0].type.name)
                 setSecondType(json.types[1]?.type.name)
-               
-                
-                
+
+
+
                 setHp(json.stats[0].base_stat)
                 setAttack(json.stats[1].base_stat)
                 setDefense(json.stats[2].base_stat)
@@ -112,6 +110,7 @@ export const App = () => {
 
     }, [load])
 
+
     const ChangeInput = (pokemonId: number): void => {
         if (!Number.isNaN(pokemonId)) {
 
@@ -126,16 +125,18 @@ export const App = () => {
         }
     }
 
+   
+
     return (
-        <div ref={scrollRef}>
+        <div>
             <Routes>
                 <Route path='/' element={
                     <G.GeneralContainer background={background} load={load}>
 
                         <G.CentralContainer>
                             {load &&
-                                <Header inputFunction={ChangeInput} link={'list'}/>
-                                
+                                <Header inputFunction={ChangeInput} link={'list'} />
+
                             }
                             <Body
                                 json={pokemonJson}
@@ -145,6 +146,7 @@ export const App = () => {
                                 elemento={type}
                                 imgId={change}
                                 load={load}
+                                arrow={true}
                             />
 
                             {load &&
@@ -173,7 +175,11 @@ export const App = () => {
                     </G.GeneralContainer>
                 } />
 
-                <Route path='/list' element={<List/>} />
+                <Route path='/card/:slug' element={<Card/>} />
+
+                <Route path='/list' element={<List />} />
+
+
 
             </Routes>
         </div>

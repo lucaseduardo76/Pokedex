@@ -6,6 +6,7 @@ export const GeneralContainer = styled.div`
     align-items: center;
     backgroud-color: red;
     margin-bottom: 30px;
+   
 
     max-width: 1200px;
     
@@ -42,7 +43,7 @@ type PropsCard = {
 }
 export const Card = styled.div<PropsCard>`
     width: 200px;
-    padding: 10px 10px;
+    padding: 10px 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;

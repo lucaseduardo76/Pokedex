@@ -87,7 +87,7 @@ export const SwitchBackgroundColor = (elemento: string): string =>{
         break;
     
         default:
-            color = '#33a165'
+            color = '#333'
         break;
     }
 

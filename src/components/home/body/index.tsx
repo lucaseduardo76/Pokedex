@@ -1,6 +1,7 @@
 import { SwitchElementImg } from '../../../interface/imgElementSelector/switchImg'
 import * as B from './style'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 type PropsMain = {
     json: {
@@ -13,8 +14,9 @@ type PropsMain = {
     functionNext: () => void,
     functionPrev: () => void,
     elemento: string,
-    imgId: number
+    imgId: any
     load: boolean
+    arrow: boolean
 
 }
 
@@ -54,15 +56,22 @@ export const Body = (data: PropsMain) => {
                 </B.Number>
 
             }
-            <B.ArrowContainer>
-                <B.BoxArrow onClick={data.functionPrev}>
-                    <B.ArrowL degree={'45'}></B.ArrowL>
-                </B.BoxArrow>
 
-                <B.BoxArrow onClick={data.functionNext}>
-                    <B.ArrowL degree={'225'}></B.ArrowL>
-                </B.BoxArrow>
-            </B.ArrowContainer>
+            {data.arrow &&
+                <B.ArrowContainer>
+
+                    <B.BoxArrow onClick={data.functionPrev}>
+                        <B.ArrowL degree={'45'}></B.ArrowL>
+                    </B.BoxArrow>
+
+
+                    <B.BoxArrow onClick={data.functionNext}>
+                        <B.ArrowL degree={'225'}></B.ArrowL>
+                    </B.BoxArrow>
+
+                </B.ArrowContainer>
+            }
+
 
 
 

@@ -21,7 +21,7 @@ export const Number = styled.div`
     position: absolute;
     margin-right: -20px;
     margin-top: -90px;
-    z-index: 1;
+    z-index: -1;
 
     @media(max-width: 870px){        
         margin-top: -200px;

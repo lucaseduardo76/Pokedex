@@ -5,7 +5,7 @@ import { SwitchBackgroundColor } from '../../interface/colorSelector/switchColor
 import * as C from './style'
 import { Header } from '../home/header'
 import pokeball from './../../assets/icons/grayBall.jpg'
-
+import { Link } from 'react-router-dom'
 
 type PropsTwo = {
     cardIndex: number
@@ -54,37 +54,40 @@ const Card = (data: PropsTwo) => {
     }, [data.cardIndex])
 
     return (
-        <C.Card Background={SwitchBackgroundColor(type)}>
+        <Link to={`/card/${data.cardIndex}`} style={{ textDecoration: 'none' }}>
 
-            <C.BackgroundImg src={pokeball} alt="" />
+            <C.Card Background={SwitchBackgroundColor(type)}>
 
-            <div>
-                <img style={{ height: '150px', zIndex: '99' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
-            </div>
+                <C.BackgroundImg src={pokeball} alt="" />
 
-            <C.InfoContainer>
-                <C.Name>{WordFirstLetterUpperCase(name)}</C.Name>
-                <C.Index>#{convertNumber(data.cardIndex)}</C.Index>
-            </C.InfoContainer>
+                <div>
+                    <img style={{ height: '150px', zIndex: '99' }} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${convertNumber(data.cardIndex)}.png`} alt="" />
+                </div>
 
-            <C.Elements>
+                <C.InfoContainer>
+                    <C.Name>{WordFirstLetterUpperCase(name)}</C.Name>
+                    <C.Index>#{convertNumber(data.cardIndex)}</C.Index>
+                </C.InfoContainer>
 
-                <C.BoxElements>
-                    <C.ElementsImg src={SwitchElementImg(type)} alt="" />
-                    <span>{WordFirstLetterUpperCase(type)}</span>
-                </C.BoxElements>
+                <C.Elements>
 
-                {secType &&
                     <C.BoxElements>
-                        <C.ElementsImg src={SwitchElementImg(secType)} alt="" />
-                        <span>{WordFirstLetterUpperCase(secType)}</span>
+                        <C.ElementsImg src={SwitchElementImg(type)} alt="" />
+                        <span >{WordFirstLetterUpperCase(type)}</span>
                     </C.BoxElements>
-                }
 
-            </C.Elements>
+                    {secType &&
+                        <C.BoxElements>
+                            <C.ElementsImg src={SwitchElementImg(secType)} alt="" />
+                            <span>{WordFirstLetterUpperCase(secType)}</span>
+                        </C.BoxElements>
+                    }
 
-            
-        </C.Card>
+                </C.Elements>
+
+
+            </C.Card>
+        </Link>
     )
 }
 
@@ -106,15 +109,15 @@ export const List = () => {
 
     const handleScrollTop = () => {
         window.scrollTo({
-            top:0,
-            left:0,
+            top: 0,
+            left: 0,
             behavior: 'smooth'
         })
     }
 
-    useEffect(()=>{
-        
-    }, [ ])
+    useEffect(() => {
+
+    }, [])
 
     return (
         <C.GeneralContainer>
