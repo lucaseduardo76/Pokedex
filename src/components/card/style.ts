@@ -54,6 +54,13 @@ export const CadsHeader = styled.div`
     padding: 0px 70px;
     margin-bottom: 20px;
     z-index: 99;
+
+    @media(max-width: 700px){
+        padding: 0 40px;
+    }
+    @media(max-width: 490px){
+        padding: 0 20px;
+    }
 `
 export const Icons = styled.img`
     height: 50px;
