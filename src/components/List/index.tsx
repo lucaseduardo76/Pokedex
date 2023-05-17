@@ -145,7 +145,6 @@ export const List = () => {
         <C.GeneralContainer>
 
             <Header
-                // The fuction of this components will be make in the next uploading
                 inputFunction={inputNumber}
                 link={'/'}
             />

@@ -37,11 +37,6 @@ export const BackgroundImg = styled.img`
     transform: rotate(40deg);
     z-index: 1;
 
-    @media(max-width: 395px){
-        height: 180px;
-        margin-top: -75px;
-        margin-left: 0px;
-    }
 `
 
 type PropsCard = {
@@ -57,6 +52,8 @@ export const Card = styled.div<PropsCard>`
     border-radius: 10px;
     margin: 20px;
     z-index: -3;
+
+    
     
 `
 
