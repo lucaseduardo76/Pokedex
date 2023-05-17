@@ -161,7 +161,7 @@ export const List = () => {
 
             {oneCard &&
                 <C.ButtonList  className="button" onClick={handleBackList}>
-                    Voltar à lista
+                    Voltar a lista
                 </C.ButtonList >
             }
 
