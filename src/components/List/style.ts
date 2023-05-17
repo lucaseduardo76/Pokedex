@@ -36,6 +36,12 @@ export const BackgroundImg = styled.img`
     margin-left: -20px;
     transform: rotate(40deg);
     z-index: 1;
+
+    @media(max-width: 395px){
+        height: 180px;
+        margin-top: -75px;
+        margin-left: 0px;
+    }
 `
 
 type PropsCard = {
