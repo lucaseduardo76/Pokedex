@@ -96,6 +96,8 @@ const Card = (data: PropsTwo) => {
 
 export const List = () => {
     const [list, setList] = useState<number>(25)
+    const [oneCard, setOneCard] = useState<boolean>(false)
+    const [cardNum, setCardNum] = useState<number>(0)
 
     let cardsList = []
 
@@ -115,23 +117,29 @@ export const List = () => {
         })
     }
 
-    useEffect(() => {
+    const inputNumber = (num: number): void => {
+        setCardNum(num);
+        setOneCard(true);
+    }
 
-    }, [])
+    const handleBackList = () =>{
+        setCardNum(1);
+        setOneCard(false);
+    }
 
     return (
         <C.GeneralContainer>
 
             <Header
                 // The fuction of this components will be make in the next uploading
-                inputFunction={() => { }}
+                inputFunction={inputNumber}
                 link={'/'}
             />
 
             <C.Container >
 
 
-                {
+                {!oneCard &&
                     cardsList.map((item, key) => (
                         <Card
                             cardIndex={item}
@@ -140,14 +148,28 @@ export const List = () => {
                     ))
                 }
 
+                {oneCard &&
+                    <Card
+                        cardIndex={cardNum}
+                    />
+
+                }
+
 
 
             </C.Container>
 
-            <C.ButtonToAddCards className="button" onClick={handleScroll}>
-                Ver mais
-            </C.ButtonToAddCards>
+            {oneCard &&
+                <C.ButtonList  className="button" onClick={handleBackList}>
+                    Voltar à lista
+                </C.ButtonList >
+            }
 
+            {!oneCard &&
+                <C.ButtonList className="button" onClick={handleScroll}>
+                    Ver mais
+                </C.ButtonList >
+            }
 
             <C.BoxArrow onClick={handleScrollTop}>
                 <C.ArrowL> </C.ArrowL>

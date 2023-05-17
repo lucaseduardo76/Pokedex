@@ -6,8 +6,7 @@ export const GeneralContainer = styled.div`
     align-items: center;
     backgroud-color: red;
     margin-bottom: 30px;
-   
-
+    
     max-width: 1200px;
     
 
@@ -20,7 +19,8 @@ export const GeneralContainer = styled.div`
     }
 
     @media (max-width:685px) {
-        width: 100%;   
+        width: 100%;  
+         
     }
 `
 
@@ -88,7 +88,7 @@ export const BoxElements = styled.div`
 export const ElementsImg = styled.img`    
     height: 20px;
 `
-export const ButtonToAddCards = styled.div`
+export const ButtonList  = styled.div`
     margin-top: 10px;
     display: flex;
     align-items: center;

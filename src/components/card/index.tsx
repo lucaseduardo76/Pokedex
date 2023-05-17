@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { SwitchBackgroundColor } from "../../interface/colorSelector/switchColor"
 import list from './../../assets/icons/pokeball.webp'
-import home from './../../assets/icons/homeIcon.png'
+import home from './../../assets/icons/homeIcon.svg'
 
 type PropsPokemonJson = {
     name: string

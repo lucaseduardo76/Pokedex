@@ -7,7 +7,6 @@ export const HeaderContainer = styled.div`
     height: 70px;
     padding: 0 40px;
     width: 100%;
-
     z-index: 999;
     @media(max-width: 430px){        
         padding: 0 10px; 
@@ -29,7 +28,7 @@ export const SearchContainer = styled.div`
         width: 300px;
     }
 
-    @media(max-width: 430px){
+    @media(max-width: 450px){
         width: 270px;  
     }
 `
