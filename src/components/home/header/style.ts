@@ -23,6 +23,7 @@ export const SearchContainer = styled.div`
     padding: 5px;
     border-radius: 10px;
     z-index: 999;
+    margin-right: 20px;
 
     @media(max-width: 585px){
         width: 300px;
