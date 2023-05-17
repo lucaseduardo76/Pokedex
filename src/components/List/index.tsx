@@ -117,12 +117,26 @@ export const List = () => {
         })
     }
 
-    const inputNumber = (num: number): void => {
-        setCardNum(num);
-        setOneCard(true);
+    const inputNumber = (pokemonId: number): void => {
+
+        if (!Number.isNaN(pokemonId)) {
+
+            if (pokemonId > 1008) {
+                setCardNum(1008);
+                setOneCard(true);
+            } else if (pokemonId < 1) {
+                setCardNum(1);
+                setOneCard(true);
+            } else {
+                setCardNum(pokemonId);
+                setOneCard(true);
+            }
+
+        }
+
     }
 
-    const handleBackList = () =>{
+    const handleBackList = () => {
         setCardNum(1);
         setOneCard(false);
     }
@@ -160,7 +174,7 @@ export const List = () => {
             </C.Container>
 
             {oneCard &&
-                <C.ButtonList  className="button" onClick={handleBackList}>
+                <C.ButtonList className="button" onClick={handleBackList}>
                     Voltar a lista
                 </C.ButtonList >
             }
