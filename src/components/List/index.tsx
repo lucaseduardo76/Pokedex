@@ -11,6 +11,14 @@ type PropsTwo = {
     cardIndex: number
 }
 
+const handleScrollTop = () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+}
+
 const Card = (data: PropsTwo) => {
     const [type, setType] = useState('');
     const [secType, setSecType] = useState('');
@@ -56,7 +64,7 @@ const Card = (data: PropsTwo) => {
     return (
         <Link to={`/card/${data.cardIndex}`} style={{ textDecoration: 'none' }}>
 
-            <C.Card Background={SwitchBackgroundColor(type)}>
+            <C.Card onClick={handleScrollTop} Background={SwitchBackgroundColor(type)}>
 
                 <C.BackgroundImg src={pokeball} alt="" />
 
@@ -91,9 +99,6 @@ const Card = (data: PropsTwo) => {
     )
 }
 
-
-
-
 export const List = () => {
     const [list, setList] = useState<number>(25)
     const [oneCard, setOneCard] = useState<boolean>(false)
@@ -107,14 +112,6 @@ export const List = () => {
 
     const handleScroll = () => {
         setList(list + 25)
-    }
-
-    const handleScrollTop = () => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        })
     }
 
     const inputNumber = (pokemonId: number): void => {
@@ -164,7 +161,7 @@ export const List = () => {
                 {oneCard &&
                     <Card
                         cardIndex={cardNum}
-                        onClick={handleScrollTop}
+                        
                     />
 
                 }
