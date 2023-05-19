@@ -164,6 +164,7 @@ export const List = () => {
                 {oneCard &&
                     <Card
                         cardIndex={cardNum}
+                        onClick={handleScrollTop}
                     />
 
                 }
