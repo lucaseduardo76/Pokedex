@@ -100,7 +100,7 @@ const Card = (data: PropsTwo) => {
 }
 
 export const List = () => {
-    const [list, setList] = useState<number>(950)
+    const [list, setList] = useState<number>(25)
     const [oneCard, setOneCard] = useState<boolean>(false)
     const [cardNum, setCardNum] = useState<number>(0)
     const [limit, setLimit] = useState(false)
