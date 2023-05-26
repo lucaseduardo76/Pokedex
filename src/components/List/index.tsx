@@ -100,9 +100,10 @@ const Card = (data: PropsTwo) => {
 }
 
 export const List = () => {
-    const [list, setList] = useState<number>(25)
+    const [list, setList] = useState<number>(950)
     const [oneCard, setOneCard] = useState<boolean>(false)
     const [cardNum, setCardNum] = useState<number>(0)
+    const [limit, setLimit] = useState(false)
 
     let cardsList = []
 
@@ -111,7 +112,15 @@ export const List = () => {
     }
 
     const handleScroll = () => {
-        setList(list + 25)
+        if(list < 1000){
+            setList(list + 25)
+        }else if(list >= 1000){
+            setList(1008)
+            setLimit(true)
+        }
+
+        
+
     }
 
     const inputNumber = (pokemonId: number): void => {
@@ -171,13 +180,13 @@ export const List = () => {
             </C.Container>
 
             {oneCard &&
-                <C.ButtonList className="button" onClick={handleBackList}>
+                <C.ButtonList verifyLimit={false} onClick={handleBackList}>
                     Voltar a lista
                 </C.ButtonList >
             }
 
             {!oneCard &&
-                <C.ButtonList className="button" onClick={handleScroll}>
+                <C.ButtonList verifyLimit={limit} onClick={handleScroll}>
                     Ver mais
                 </C.ButtonList >
             }

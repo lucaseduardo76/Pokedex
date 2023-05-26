@@ -91,19 +91,22 @@ export const BoxElements = styled.div`
 export const ElementsImg = styled.img`    
     height: 20px;
 `
-export const ButtonList  = styled.div`
+type PropsButton = {
+    verifyLimit: boolean
+}
+export const ButtonList  = styled.div<PropsButton>`
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0050ac;
+    background-color: ${(PropsButton => PropsButton.verifyLimit ? `#a0a0ac`: `#0050ac`)};
     border-radius: 30px;
     height: 50px;
     width: 200px;
     color: #fff;
     font-size: 17px;
     font-weight: 700;
-    cursor: pointer;
+    cursor: ${(PropsButton => PropsButton.verifyLimit ? `not-allowed`: `pointer`)};
 
 `
 export const BoxArrow = styled.div`
