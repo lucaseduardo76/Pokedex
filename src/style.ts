@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
-const loading = keyframes`
+const loadingAnimation = keyframes`
     0%{
         transform: rotate(0deg);
     }
@@ -59,7 +59,7 @@ export const ContainerError = styled.div`
 
 export const Loading = styled.img`
     height: 60px;       
-    animation: ${loading} .5s linear infinite;
+    animation: ${loadingAnimation} .5s linear infinite;
 `
 
 export const LinkBroken = styled.span`
