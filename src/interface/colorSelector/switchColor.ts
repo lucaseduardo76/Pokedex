@@ -31,7 +31,7 @@ export const SwitchBackgroundColor = (elemento: string): string =>{
         break;
 
         case 'ice':
-            color = '#c90086'
+            color = '#e0ffff'
         break;
 
         case 'flying':
